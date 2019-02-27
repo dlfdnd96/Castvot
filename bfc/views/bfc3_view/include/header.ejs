@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <title>국민남친선발대회3</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+    <link rel="stylesheet" type="text/css" href="https://img.castvot.com/css/style_bfc3_default.css">
+    <script src="https://img.castvot.com/js/jquery-2.1.1.min.js"></script>
+    <script src="https://img.castvot.com/js/jquery-ui.js"></script>
+    <script src="https://img.castvot.com/js/jquery.bxslider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122925852-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-122925852-4');
+    </script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-122925852-3', 'auto');
+        ga('require', 'GTM-5MRVCMM');
+        ga('send', 'pageview');
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // 위로 가기
+            $(window).scroll(function() {
+                var windowT = $(window).scrollTop();
+                if(windowT == 0) {
+                    $('.moveTop').stop().animate({'bottom':'-100px', 'opacity':'0'},300);
+                }
+                else {
+                    $('.moveTop').stop().animate({'bottom':'50px', 'opacity':'1'},300);
+                }
+            });
+            $('.moveTop').click(function() {
+                $('.moveTop').stop().animate({'bottom':'-100px', 'opacity':'0'},300);
+                $('html').stop().animate({'scrollTop':'0'},500);
+            });
+            $('.moreBtn').mouseenter(function() {
+                $(this).find('.bg').stop().animate({'width':'0'},180).animate({'width':'100%'},150);
+            });
+
+            // 반응형일 때 햄버거 메뉴
+            var cnt = 0;
+            $(".navbar").click(function(){
+                cnt++;
+                $this = $(this);
+                $this.toggleClass("after");
+                $this.addClass('on');
+                if(cnt%2==1) {
+                    $('header nav').show().stop().animate({'right':'0'},200);
+                    $this.css('position','fixed');
+                }
+                else {
+                    $('header nav').fadeOut().stop().animate({'right':'-80%'},100);
+                    $this.css('position','absolute');
+                }
+            });
+
+
+            $(window).resize(function() {
+                FixWindowSize();
+            });
+            FixWindowSize();
+        });
+
+        // search 자동완성용 변수 및 함수
+        var boyList = new Array();
+        function searchAutoFill(data){
+            let i;
+            for(i = 0; i < data.length; i++){
+                boyList.push(data[i].name);
+            }
+        }
+
+        // 메인 이미지 크기 맞추기
+        function FixWindowSize(){
+            var topimgBoxW = $('.rankTop>.imgBox').width();
+            if($(window).width() < 768) {
+                $('.rankTop>.imgBox').height((topimgBoxW/5)*3);
+            }
+            var boximgBoxW = $('.rBox:not(".recommend")>.imgBox').width();
+            $('.rBox:not(".recommend")>.imgBox').height((boximgBoxW/5)*3);
+            $(window).resize(function() {
+                var topimgBoxW = $('.rankTop>.imgBox').width();
+                if($(window).width() < 768) {
+                    $('.rankTop>.imgBox').height((topimgBoxW/5)*3);
+                }
+                else {
+                    $('.rankTop>.imgBox').height(398);
+                }
+                var boximgBoxW = $('.rBox:not(".recommend")>.imgBox').width();
+                $('.rBox:not(".recommend")>.imgBox').height((boximgBoxW/5)*3);
+            });
+        }
+
+        function FixWindowSizeBoyList(){
+            // 메인 이미지 크기 맞추기
+            if($(window).width() > 768) {
+                var boyLimgW = $('.boyList>.boyBox').eq(1).width();
+                $('.boyBox>.boyPop').css('bottom',-(boyLimgW/5)*3-50+'px');
+                $('.boyBox').height((boyLimgW/5)*3);
+                if($('.boyList>.boyBox').index()==0) {
+                    var boyL0imgW = $('.boyList>.boyBox').eq(0).width();
+                    $('.boyBox').eq(0).height((boyL0imgW/5)*3+25);
+                    $('.boyBox').eq(0).find('.boyPop').css('bottom',-(boyL0imgW/5)*3-50+'px');
+                }
+
+                $('.boyBox').mouseenter(function() {
+                    $(this).find('.boyPop').stop().animate({'bottom':'0','opacity':'1'});
+                });
+                $('.boyBox').mouseleave(function() {
+                    $(this).find('.boyPop').stop().animate({'bottom':-boyLimgW+'px','opacity':'0'});
+                    if($(this).index()==0) {
+                        $(this).find('.boyPop').stop().animate({'bottom':-boyL0imgW+'px','opacity':'0'});
+                    }
+                });
+            }
+            else if($(window).width() <= 768) {
+                $('.boyBox').css('width','100%');
+                var boyLMimgW = $('.boyList>.boyBox').width();
+                $('.boyBox').height((boyLMimgW/5)*3);
+            }
+        }
+
+        function MobileBoylistBoxSize(){
+
+            if($(window).width() > 768 ) {
+                // 후보목록 작은박스
+                rankBoxRWB = $('.boyBox:not(.boyTop) .rankNum').height();
+                rankBoxNWB = $('.boyBox:not(.boyTop) .name').height();
+                rankNameB = rankBoxRWB + rankBoxNWB;
+                $('.boyBox:not(.boyTop) .rankName').height(rankNameB);
+
+                // 후보목록 1위박스
+                rankTopRW = $('.boyTop .rank1').height();
+                rankTopNW = $('.boyTop .name').height();
+                rankTopNM = parseInt($('.boyTop .name').css('margin-top'));
+                rankName = rankTopRW + rankTopNW + rankTopNM;
+                $('.boyTop .rankName').height(rankName);
+
+                // 후보목록 작은박스 숫자 원 height 맞추기
+                rankNumW = $('.rankNum').width();
+                $('.rankNum').height(rankNumW).css('line-height',rankNumW+'px');
+            }
+
+            // 후보목록 작은박스 숫자 원 자동입력
+            var boxBoxnum = $('.boyList>.boyBox').length;
+            for(var i=0; i<boxBoxnum; i++) {
+                $('.boyList>.boyBox').eq(i).find('.rankNum').text(i+1);
+            }
+        }
+
+        // ↘ 후보목록 검색 기능
+        $(document).ready(function() {
+
+            // 검색어 자동완성
+            // $("#inputName").autocomplete({
+            //     source: boyList, // 타이핑시 보여질 내용
+            //     focus: function(event, ui){ // jQuery UI autocomplete를 한글과 사용할 때 커서를 사용해서 아이템을 선택하면 나머지가 사라져 버리는 버그를 방지하는 코드.
+            //         return false;
+            //         // event.preventDefault();
+            //     }
+            // });
+
+            $("#inputName").keydown(function (key) {
+                if (key.keyCode == 13) {
+                    chkSearchData();
+                }
+            })
+            $("#src_icon").click(function () {
+                chkSearchData();
+            });
+
+            function chkSearchData(){
+                var inputVal = $("#inputName").val();
+                if (inputVal.length < 1) {
+                    alert("검색어는 1자 이상 입력해주세요.");
+                    $("#inputName").focus();
+                    return;
+                } else {
+                    searchData();
+                }
+            }
+
+            function searchData() {
+                var inputVal = $("#inputName").val();
+                var inputData = {"name": inputVal};
+                var inputData_json = JSON.stringify(inputData);
+                $.ajax({
+                    type: "POST",
+                    url: "/ajax/search", // 경로는 index3.js 에서 컨트롤러 지정할 때 입력한 경로를 입력한다.
+                    crossDomain: false,
+                    contentType: "application/json; charset=utf-8",
+                    processData: false,
+                    dataType: "json",
+                    data: inputData_json,
+                    success: function (data) {
+                        var jsonData = JSON.parse(JSON.stringify(data));
+                        var jsonData_parse =JSON.parse(jsonData.data);
+                        window.location.href='/bfc3/boys/' + jsonData_parse[0].boyid;
+                    },
+                    error: function (xhr, status, errorThrown) {
+                        alert("검색결과가 없습니다.");
+                        $("#inputName").focus();
+                        return;
+                    }
+                }); // end ajax
+            }
+        });
+    </script>
+</head>
+<body>
+<div id="wrap" class="detail">
+    <div class="navbar">
+        <a href="#">
+            <span class="bar-1"></span>
+            <span class="bar-2"></span>
+            <span class="bar-3"></span>
+        </a>
+    </div>
+    <header>
+        <div class="header_top">
+            <nav>
+                <ul>
+                    <!-- <li><a href="/bfc3">홈<div class="line"></div></a></li> -->
+                    <li><a href="/bfc3/boylist">후보목록<div class="line"></div></a></li>
+                    <li><a href="/bfc3/newboy_bfc">후보추천<div class="line"></div></a></li>
+                    <li><a href="/bfc3/notice">공지사항<div class="line"></div></a></li>
+                    <li><a href="/bfc3/prize">보팅어워즈<div class="line"></div></a></li>
+                </ul>
+            </nav>
+            <div class="mainBox">
+                <div>
+                    <div class="logo">
+                        <a href="/bfc3"><img src="https://img.castvot.com/img/mainlogo2.png" alt="로고"></a>
+                    </div>
+                    <div class="subTxt">국민남친선발대회, 그 세번째 이야기가 지금 시작됩니다!<br>많은 투표와 참여 부탁드립니다.</div>
+                    <div class="voteTime">투표기간&nbsp;&nbsp;&nbsp;&nbsp;2018.11.14 ~ 2018.12.28 까지</div>
+                </div>
+            </div>
+        </div>
+    </header>

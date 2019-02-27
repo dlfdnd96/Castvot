@@ -1,0 +1,111 @@
+{
+    "env":"development",
+    "fqdn":"localhost",
+    "is_production":false,
+    "cdn_host":"https://img.castvot.com/",
+    "server":{
+        "listen":{"port":3003}
+    },
+    "basic_auth":{
+        "users": { "castvot" : "dkanehahffk" },
+        "challenge": true,
+        "realm": "DevOnly"
+    },
+    "cachekey":{
+        "main":"devmain",
+        "bfc3_main":"bfc3_devmain",
+        "boysPrefix":"devboys:"
+    },
+    "main_max":25,
+    "s3resizeimg":{
+        "bucketname":"img1.castvot.com",
+        "tmpdir":"./tmp_uploads/",
+        "options":{
+            "aws": {
+                "accessKeyId": "AKIAJ6P5FHXLUEF3GZPQ",
+                "secretAccessKey": "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",
+                "path": "public/files/bfc/",
+                "region": "ap-northeast-2",
+                "acl": "public-read"
+            },
+            "cleanup": {
+                "versions": true,
+                "original": true
+            },
+            "original": {
+                "awsImageAcl": "public-read"
+            },
+            "versions": [{
+                "maxHeight": 220,
+                "maxWidth": 220,
+                "format": "jpg",
+                "suffix": "-small",
+                "quality": 100,
+                "awsImageAcl" : "public-read"
+            },{
+                "maxHeight": 280,
+                "maxWidth": 350,
+                "format": "jpg",
+                "suffix": "-large",
+                "quality": 100,
+                "awsImageAcl" : "public-read"
+            }]
+        }
+    },
+    "redis":{
+        "host": "localhost",
+        "port": 6379,
+        "db": 0,
+        "prefix":"bfctest:"
+    },
+    "session":{
+        "type":"redis",
+        "prefix": "bfctestsess:",
+        "ttl": 3600,
+        "resave":true,
+        "saveUninitialized":false,
+        "cookie": {
+            "domain":"localhost",
+            "secure": false
+        },
+        "name":"bfctestsess",
+        "secret":"wtfbfc5321"
+    },
+    "mysql":{
+        "dbconn":{
+            "host": "aa1ex0a4ot0ft9l.cagxgiwozqpg.ap-northeast-2.rds.amazonaws.com",
+            "user": "dev",
+            "password": "wE#N!7V4NCx4kw$C4LQW",
+            "port": 3306,
+            "database": "develop",
+            "connectionLimit" : 20,
+            "connectTimeout":3000,
+            "waitForConnections":false,
+            "multipleStatements": true,
+            "queueLimit" : 0
+        }
+    },
+    "passport":{
+        "naver": {
+            "clientID": "YeBh_40hmnjsY59esr4U",
+            "clientSecret": "CosQMBKn0t",
+            "callbackURL": "http://localhost:3003/bfc3/login/auth/naver/callback"
+        },
+        "kakao": {
+            "clientID": "d62f7e84b4004506e30e8340bd5f9ef0",
+            "clientSecret": "Iaw4jDbsSfsoCZBY42DbZoCCx8lTCTbm",
+            "callbackURL": "http://localhost:3003/bfc3/login/auth/kakao/callback"
+        },
+        "google": {
+            "clientID": "388890221172-b666b47o06gg7mu51c5u7m3pgr4r54fc.apps.googleusercontent.com",
+            "clientSecret": "CobW5ucV-gwfM4D0QeQ3kbCe",
+            "callbackURL": "http://localhost:3003/bfc3/login/auth/google/callback"
+        },
+        "facebook": {
+            "clientID": "1943929839032860",
+            "clientSecret": "c045bd465b8fb86629b3743b33aeef22",
+            "callbackURL": "http://localhost:3003/bfc3/login/auth/facebook/callback",
+            "profileFields":["id","displayName","emails"]
+        }
+    }
+}

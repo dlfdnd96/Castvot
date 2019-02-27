@@ -1,0 +1,101 @@
+
+<% include ../include/header %>
+
+            <section>
+
+                <% include ../include/search %>
+
+                <!-- 국민남친 후보목록 -->
+                <div class="boyListBox">
+                    <div class="boyList">
+                    </div> <!-- end of class="boyList" -->
+                </div> <!-- end of class="boyListBox" -->
+            </section>
+
+            <% include ../include/footer %>
+
+        </div> <!-- end of id="wrap"-->
+    </body>
+    <script>
+
+        // 용도를 알 수 없어서 주석 처리.↓
+        // function addCommas(nStr) {
+        //     nStr += '';
+        //     x = nStr.split('.');
+        //     x1 = x[0];
+        //     x2 = x.length > 1 ? '.' + x[1] : '';
+        //     var rgx = /(\d+)(\d{3})/;
+        //     while (rgx.test(x1)) {
+        //         x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        //     }
+        //     return x1 + x2;
+        // }
+
+        function updateData() {
+            $.ajax({
+                type: "GET",
+                url: "/ajax/update_boylist",
+                crossDomain:false,
+                contentType: "application/json",
+                processData: false,
+                dataType: "json",
+                success:function ( data ) {
+                    var result = $.parseJSON(JSON.stringify(data));
+                    var data = $.parseJSON(result.data);
+
+                    if(result.status===true){
+                        let contents = '';
+                        for (let i = 0; i < data.length; i++) {
+                            if ( i === 0 ){
+                                $(".boyList").html(
+                                    "<div class=\"boyBox boyTop\" onclick=\"location.href='/bfc3/boys/" + data[i].boyid +"'\">\n" +
+                                    "    <div class=\"boyPop\">\n" +
+                                    "        <div class=\"rankName\">\n" +
+                                    "            <div class=\"rank1\"><img src=\"https://img.castvot.com/img/boyList1.png\" alt=\"rank1위\"/></div>\n" +
+                                    "            <div class=\"name\">" + data[i].name + "</div>\n" +
+                                    "        </div>\n" +
+                                    "        <div class=\"point\"><span>RP</span><span>" + (parseInt(data[i].total * 1000) / 1000) + "</span></div>\n" +
+                                    "  </div>\n" +
+                                    "</div>\n"
+                                );
+                                $(".boyTop").css('background-image', "url('https://img.castvot.com/files/bfc/" + data[0].photo + "-small.jpg')");
+
+                            } else {
+                                contents += "<div class=\"boyBox\" onclick=\"location.href='/bfc3/boys/" + String(data[i].boyid) +"'\">\n" +
+                                            "    <div class=\"boyPop\">\n" +
+                                            "        <div class=\"rankName\">\n" +
+                                            "            <div class=\"rankNum\">" + ( i + 1 ) +"</div>" +
+                                            "            <div class=\"name\">" + data[i].name + " </div>\n" +
+                                            "        </div>\n" +
+                                            "        <div class=\"point\"><span>RP</span><span>" + (parseInt(data[i].total * 1000) / 1000) + "</span></div>\n" +
+                                            "    </div>\n" +
+                                            "</div>\n";
+                            }
+                        }
+                        $(".boyList").append(contents);
+                        for(let i = 1; i < data.length; i++)
+                            $(".boyBox:nth-child(" + (i + 1) + ")").css('background-image', "url('https://img.castvot.com/files/bfc/" + String(data[i].photo) + "-small.jpg')");
+
+                        // TODO: 칸이 줄었을 경우 제거해주는거...main_max - i
+                    } else { // 데이터 에러
+                        console.log("Data Error : " + result.message);
+                    }
+                    FixWindowSizeBoyList();
+                    MobileBoylistBoxSize();
+                },
+                error: function (xhr, status, errorThrown) {
+                    console.log("통신에러:"+xhr.responseText);
+                }
+            }); // end ajax
+
+        }
+
+        $(document).ready(function () {
+            $(".boyList").show();
+            updateData(); // 첫번째 업데이트
+            setInterval(updateData, 5000);
+            MobileBoylistBoxSize();
+        });
+
+    </script>
+</html>

@@ -1,0 +1,285 @@
+<% include ../include/header %>
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>    
+		   <div id="main">
+            <div class="main_top boys_detail">
+                <div id="content">
+                    <div class="img-section name-section">
+                        <h2 class="name" id="boy_name"><%= data.boyname %></h2>              
+                        <div class="imgbox main_img">
+                            <img src="<%= data.photo1 %>" id="main_image" alt="메인이미지">
+                            <div class="content"></div> 
+                        </div>
+                        <div class="imgbox sub_img01"> 
+                            <img src="<%= data.photo2 %>" id="sub_image1" alt="서브이미지1">
+                            <div class="content"></div> 
+                        </div>
+                        <div class="imgbox sub_img02">
+                            <img src="<%= data.photo3 %>" id="sub_image2"alt="서브이미지2"> 
+                            <div class="content"></div> 
+                        </div>
+                        <div class="sns-section">
+                            <a href="https://twitter.com/intent/tweet?text=국%EA%B5%AD%EB%AF%BC%EB%82%A8%EC%B9%9C%EC%97%90%EA%B2%8C%20%ED%88%AC%ED%91%9C%ED%95%98%EC%84%B8%EC%9A%94&url=https://bfc.castvot.com/boys/<%= boyid %>" title="트위터로 연결" target="_blank"></a>
+                            <a href="http://www.facebook.com/sharer/sharer.php?u=https://bfc.castvot.com/boys/<%= boyid %>" title="페이스북으로 연결" target="_blank"></a>
+                            <a href="#" title="주소복사하기" id="clip_target"></a>
+                        </div> 
+                    </div>
+                    <div class="right-box">
+                        <div class="ranking-section">
+                            <p class="current_rank rowbox">현재RANKING</p>
+                            <ul class="current_point line_box">
+                                <li class="rp line_box_h"><span id="uuu_total"></span> </li>
+                                <li class="xrp">
+                                <table class="tg">
+                                    <tr>
+                                        <th>리플(XRP)</th>
+                                        <td><span id="xrp_total"></span> XRP</td>
+                                    </tr>
+                                    <tr>
+                                        <th>퀀텀(QTUM)</th>
+                                        <td><span id="qtum_total"></span> QTUM</td>
+                                    </tr>
+                                </table>
+                            </ul>
+                        </div>          
+                        <div class="desc-section">
+                            <ul class="line_box">
+                                <li class=" line_box_h">후보자 대표 SNS</li>
+                                <li class="sns_addr"><%= data.snslink %></li>
+                            </ul>
+                            <p class="origin origin_src_01">이미지 출처1 : <span><%= data.photo1_src %></span></p>
+                            <p class="origin origin_src_02">이미지 출처2 : <span><%= data.photo2_src %></span></p>
+                            <p class="origin origin_src_03">이미지 출처3 : <span><%= data.photo3_src %></span></p>
+                            <p class="rowbox">후보 추천인 : <%= data.author %></p>
+                            <p class="detail" id="reason">
+                                    <%- data.reason %>
+                            </p>
+                        </div>
+                        <ul class="botton_right">
+			<!--
+                            <li><a href="editboy.ejs" class="ask_edit">수정요청</a></li>
+			 -->
+                            <li><a href="#" class="btn_vote">투표하기</a></li>
+                            <li><a href="/">메인으로</a></li>
+                        </ul>
+                    </div>
+                </div>                       
+                <div id="sidebar">
+                    <% include ../include/right_ad %>
+                </div>                    
+            </div>
+        </div>            
+                <% include ../include/footer %>
+        <div class="bdetails_vote_popup01">
+            <div class="align">
+                <div>                  
+                본 투표 서비스는 홍콩에있는 ‘Casting Vote Solution HK Limited’에서 제공 됩니다.<br><br>
+                (한국) 국민남친선발대회의 대상자는한국에서 활동하고 있는혹은 한국인에 한하며, 대상자는 추천에 의해서만 선발 됩니다. <br>"Casting Vote Solution HK Limited"는 추천을 하지 않음을 명시합니다.<br><br>
+                투표에 사용되기 위하여 지갑에 모인 코인의 사용권은 “Casting Vote Solution HK Limited”에 있습니다. <br>
+                투표 대상자 1인으로 인하여 모인 코인의 사용 계획은 다음과 같습니다.<br><br>
+
+                <table>
+                    <tr>
+                        <th>캐스팅보트 솔루션 홍콩</th>
+                        <th>point X 0%</th>
+                        <th>플랫폼 운영 수입</th>
+                    </tr>
+                    <tr>
+                        <th>Korean Agent(한국 대리인)</th>
+                        <th>point X 0%</th>
+                        <th>홍보, 마케팅,용역 비용 </th>
+                    </tr>
+                    <tr>
+                        <th>국민 남친 후보자 </th>
+                        <th>point X 100%</th>
+                        <th>하단 주석 참조</th>
+                    </tr>
+                </table>
+                <br>                                                              
+
+                <b>(주석)</b> <br>
+                    1. “Ranking Point” (이하 RP)란 리플(XRP)과 퀀텀(QTUM)의 가치를 수치로 산정한 값을 말합니다.<br>
+2. RP에 반영되는 리플(XRP)과 퀀텀(QTUM)의 시세는 모두 ‘대한민국 표준시’의 ‘코인마켓캡’ 기준으로 합니다.<br>
+* Ranking Point 산정공식 : “ RP = [(XRP개수 x XRP의USD시세) + (QTUM x QTUM의 USD시세)] ”<br>
+3. ‘보팅어워즈 (Voting Awards)’란 투표 후보자에게 제공되는 ‘최종 RP’를 기준으로 산출된 ‘암호화폐의 양’과 ‘추가 혜택’을 말합니다. <br>
+- 국민남친 후보자는 보팅어워즈로써 투표된 XRP, QTUM 전체를 받게 됩니다.<br>
+- 단, 보팅어워즈가 ‘RP 100’ 이하 일 경우, 팬들의 이름으로 구호단체에 기부 됩니다.<br><br>
+
+4. Korean Agent(한국 대리인)는 투표 대상자에게 보팅어워즈를 전달하기 위해서 최선을 다할 것입니다. <br><br>
+
+5. 투표 종료 후 3주까지도 투표 대상자에게 보팅어워즈를 전달하지 못하거나, 투표 대상자가 보팅어워즈의 인수를 거부한 경우, 팬들의 이름으로 구호단체에 자동 기부 됩니다.<br><br>
+
+6. 투표 도중, 초상권, 사용권 등, 모든 법적 이유 등으로, 더이상 투표가 진행 될 수 없을 경우, 투표에 사용된 암호화폐는 반환되지 않으며, 자동으로 팬들의 이름으로 구호단체에 기부 됩니다.<br><br>
+
+7. 투표에 사용된 암호화폐는 기술적인 이유 등으로 취소 및 환불이 절대 불가능 합니다. <br><br>
+
+8. 투표 대상자 혹은 구호단체에 전달될 보팅어워즈는 세금을 공제하기 전의 상태이므로 실제 전달되는 보팅어워즈와 상이 할 수 있습니다.<br><br>
+
+위의 모든 조건에 동의 하실 경우에 한해서만 투표가 가능합니다.<br><br>
+
+<b class="red"> 위의 모든 조건에 동의 하시지 않으실 경우, 절대 투표에 참여 하시면 안됩니다.</b><br><br>
+                </div>
+                <ul class="botton_center">
+                    <li><a href="#" class="btn_agree">동의함</a></li>
+                    <li><a href="#" class="close_disagree">동의하지않음</a></li>
+                </ul>
+            </div>
+        </div>            
+        <div class="bdetails_vote_popup02 ">
+            <div class="align">
+                <div class="box">
+                    <p>※주의사항 </p>
+                    <p>
+                        리플은 리플 주소로만, 퀀텀은 퀀텀 주소로만 보내주세요. 혼동하여 사용하면 코인은 유실되며, 찾을 수 없습니다.
+                    </p>
+                </div>
+                <ul class="x_or_q">
+                    <li><a href="#" class="btn_xrp on">리플(XRP)로 투표</a></li>
+                    <li><a href="#" class="btn_qtum">퀀텀(QTUM)으로 투표</a></li>
+                </ul>
+                <div class="addrbox"><!--addrpox-->
+                    <h4>XRP Deposit Address</h4>
+                    <p id="xrp_account2"></p>
+                    <ul class="qr_or_copy">
+                        <li><a href="#" class="btn_qr">Show QR Code</a></li>
+                        <li><a href="#" class="btn_copy_qr" id="copyXrp">Copy Address</a></li>
+                    </ul>
+                </div>
+                <div class="qtumaddr"><!--addrpox-->
+                    <h4>QTUM Deposit Address</h4>
+                    <p id="qtum_account2"></p>
+                    <ul class="qr_or_copy">
+                        <li><a href="#" class="btn_qr">Show QR Code</a></li>
+                        <li><a href="#" class="btn_copy_qr" id="copyQtum">Copy Address</a></li>
+                    </ul>
+                </div>
+                <p>
+                    코인이 들어있는 지갑(wallet)에서 정확한 주소를 입력하시고, 투표에 사용하실 코인 수를 입력하신 후, 전송하여 주시기 바랍니다. 주소는 QR코드를 활용 하실 수 있습니다.
+                </p>
+                <a href="#" class="close_xrp">닫기</a>
+            </div>
+        </div>
+        <div class="bdetails_vote_popup03 xrp">
+            <div class="align">
+                <p>XRP Deposit Address</p>
+                <div class="qr_img" id="xrp_qrcode"></div>
+                <p class="qr_addr" id="xrp_account"></p>
+                <a href="#" class="close_qr">닫기</a>
+            </div>
+        </div>
+        <div class="bdetails_vote_popup03 qtum">
+            <div class="align">
+                <p>QTUM Deposit Address</p>
+                <div class="qr_img" id="qtum_qrcode"></div>
+                <p class="qr_addr" id="qtum_account"></p>
+                <a href="#" class="close_qr">닫기</a>
+            </div>
+        </div>
+      </div> <!-- wrap -->
+    <script>
+        $(document).ready( function(){
+
+            var accounts = <%- data.accounts %>;
+            //var xrp = accounts.filter( function ( x ) { return x.coinname === 'XRP' } )[0]
+
+            //var xrp_score = xrp.usd * (xrp.coins - 20 );
+            //$("#xrp_account").text(xrp.account);
+            //$("#xrp_account2").text(xrp.account);
+            //$('#xrp_qrcode').qrcode({text:xrp.account});
+            //$("#xrp_total").text(xrp.coins-20);
+            
+            var qtum = accounts.filter( function ( x ) { return x.coinname === 'QTUM' } )[0];
+            var qtum_score = qtum.usd * qtum.coins;
+            var qtum_total = Math.floor(qtum.coins*1000)/1000;
+            
+
+            $("#qtum_account").text(qtum.account);
+            $("#qtum_account2").text(qtum.account);
+            $('#qtum_qrcode').qrcode({text:qtum.account});
+            $("#qtum_total").text(qtum_total);
+            
+            var uuu_tmp = qtum_score;
+            var uuu_total = Math.floor(uuu_tmp*1000)/1000;
+            $("#uuu_total").text(uuu_total);
+            //$("#uuu_total").text(xrp_score);
+            $(".btn_vote").click(function(){
+                $(".bdetails_vote_popup01").show();
+                //alert("투표 기간이 아닙니다.");
+            });
+
+            $(".close_xrp").click(function(){
+                $(".bdetails_vote_popup01").fadeOut();
+            });
+
+            $(".close_qr").click(function(){
+                $(".bdetails_vote_popup03").fadeOut();
+            });
+
+            $(".btn_agree").click(function(){
+                $(".bdetails_vote_popup01").fadeOut();
+                $(".bdetails_vote_popup02").fadeIn();
+            });
+
+            $(".close_disagree").click(function(){
+                $(".bdetails_vote_popup01").fadeOut();
+            });
+
+            $(".btn_qtum").click(function(){
+                $(".addrbox").hide();
+                $(".qtumaddr").show();
+            });
+
+            $(".btn_xrp").click(function(){
+                $(".qtumaddr").hide();
+                $(".addrbox").show();
+            });
+
+            $(".close_xrp").click(function(){
+                $(".bdetails_vote_popup02 ").fadeOut();
+            });
+
+            $(".x_or_q > li>a").click(function(){
+                $('.x_or_q > li>a').removeClass("on");
+                $(this).addClass("on");
+            });
+
+            $(".on").click(function(){
+                $('.x_or_q > li>a').removeClass("on");
+                $(this).addClass("on");
+            });
+
+            $('.addrbox .btn_qr').click(function() {
+                $(".bdetails_vote_popup03.xrp").fadeIn();
+            });
+
+            $('.qtumaddr .btn_qr').click(function() {
+                $(".bdetails_vote_popup03.qtum").fadeIn();
+            });
+            
+            $('#clip_target').on('click', function () {
+                copyText( location.href )
+            });
+            
+            $('#copyXrp').on( 'click', function () {
+                copyText( $('#xrp_account2').text() ) 
+            } )
+            
+            $('#copyQtum').on( 'click', function () {
+                copyText( $('#qtum_account2').text() )
+            } )
+            
+            function copyText ( text ) {
+                var temp = document.createElement( "input" );
+                document.body.appendChild( temp );
+                temp.value = text;
+                temp.select();
+                document.execCommand( "Copy" );
+                document.body.removeChild( temp );
+                alert("클립보드에 복사되었습니다.");
+            }
+            
+        });
+    </script>
+	</body>
+</html>

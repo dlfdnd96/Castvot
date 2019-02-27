@@ -1,0 +1,207 @@
+<% include ../include/header %>
+
+    <section class="listpage">
+        <% include ../include/s_visual %>
+        <div class="bgBox">
+            <div class="sub_content">
+                <h4>BJ보기</h4>
+                <div class="vsbox">
+                    <div class="vsbest top1">
+                        <div class="vsimg">
+                            <div class="black"></div>
+                            <img id="imgBJPic_0" src="" alt="">
+                            <div class="rp">
+                                <span class="icon">RP</span>
+                                <span id="divRPPoint_0" class="point"><!--BJ Point--></span>
+                            </div>
+                            <a href="" class="btn">VOTE</a>
+                        </div>
+                        <div class="vstxt">
+                            <p class="ranking">1위</p>
+                            <p id="pBJInfo_0">-<!--아프리카 BJ--><br /><span>-<!--BJ 이름--></span></p>
+                            <ul>
+                                <li><a href="">방송채널</a></li>
+                                <li><a href="">팬클럽</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>VS</div>
+                    <div class="vsbest top2">
+                        <div class="vsimg">
+                            <img id="imgBJPic_1" src="" alt="">
+                            <div class="black"></div>
+                            <div class="rp">
+                                <div class="icon">RP</div>
+                                <div id="divRPPoint_1" class="point"><!--BJ Point--></div>
+                            </div>
+                            <a href="" class="btn">VOTE</a>
+                        </div>
+                        <div class="vstxt">
+                            <p class="ranking">2위</p>
+                            <p id="pBJInfo_1">-<!--아프리카 BJ--><br /><span>-<!--BJ 이름--></span></p>
+                            <ul>
+                                <li><a href="">방송채널</a></li>
+                                <li><a href="">팬클럽</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!-- //vsbox-->
+            </div><!-- //sub_content-->
+
+<style media="screen">
+  /* .sc02 .bjsBox:nth-child(4n) { margin-right: 0; }
+   .sc02 { width: 100%; }
+   .sc02 .contentwrap { width: 62%; }*/
+</style>
+            <div class="sc02">
+                <div class="contentwrap">
+                        <div class="newBJ">
+                        <!-- <div class="bjsBox">
+                            <div class="bjBox">
+                                <img src="../img/bj04.png" alt="bj04">
+                                <div class="rankings">3위</div>
+                                <div class="black"></div>
+                                <div class="rp">
+                                    <div class="icon">RP</div>
+                                    <div class="point">10,000</div>
+                                </div>
+                                <a href="" class="btn">VOTE</a>
+                            </div>
+                            <div class="txtBox">아프리카 TV <span>양띵</span></div>
+                        </div>
+                        <div class="bjsBox">
+                            <div class="bjBox">
+                                <img src="../img/bj05.png" alt="bj05">
+                                <div class="rankings">4위</div>
+                                <div class="black"></div>
+                                <div class="rp">
+                                    <div class="icon">RP</div>
+                                    <div class="point">10,000</div>
+                                </div>
+                                <a href="" class="btn">VOTE</a>
+                            </div>
+                            <div class="txtBox">유투브 TV <span>이사배</span></div>
+                        </div>
+                        <div class="bjsBox">
+                            <div class="bjBox">
+                                <img src="../img/bj06.png" alt="bj06">
+                                <div class="rankings">5위</div>
+                                <div class="black"></div>
+                                <div class="rp">
+                                    <div class="icon">RP</div>
+                                    <div class="point">10,000</div>
+                                </div>
+                                <a href="" class="btn">VOTE</a>
+                            </div>
+                            <div class="txtBox">유투브 BJ<span>포니</span></div>
+                        </div>
+                        <div class="bjsBox">
+                            <div class="bjBox">
+                                <img src="../img/bj07.png" alt="bj07">
+                                <div class="rankings">6위</div>
+                                <div class="black"></div>
+                                <div class="rp">
+                                    <div class="icon">RP</div>
+                                    <div class="point">10,000</div>
+                                </div>
+                                <a href="" class="btn">VOTE</a>
+                            </div>
+                            <div class="txtBox">유투브 TV <span>쌈바홍</span></div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+    </section>
+
+<% include ../include/footer %>
+
+   </div>
+</body>
+<script>
+
+    function updateData(){
+        $.ajax({
+            type: "GET",
+            url: "/ajax/update_bjlist",
+            crossDomain: false,
+            contentType: "application/json",
+            processData: false,
+            dataType: "json",
+            success: function(data){
+                var result = $.parseJSON(JSON.stringify(data));
+                var data = $.parseJSON(result.data);
+
+                if(result.status === true){
+                    var result = $.parseJSON(JSON.stringify(data));
+                    // var data = $.parseJSON(result.data);
+
+                    // if(result.status === true){
+                        // HOT BJ 초기화
+                        var data_i;
+                        var bjPic         = "";
+                        var bjChannel  = "";
+                        var bjName     = "";
+                        var bjRPPoint   = "";
+                        var $pBJInfo_i, $imgBJPic_i;
+                        var contentsNewBj = "";
+
+                        for(let i = 0; i < data.length; i++){ // data.length 8
+                            data_i       = data[i];
+                            bjPic         = "https://img.castvot.com/files/bfc/" + String(data[i].photo) + "-small.jpg";
+                            bjChannel  = data_i.active_area;
+                            bjName     = data_i.name;
+                            bjRPPoint   = (parseInt(data_i.total * 1000) / 1000);
+                            // bjPic         = "../img/bj8.jpg";
+                            // bjChannel  = "아프리카 BJ";
+                            // bjName     = "이사배";
+                            // bjRPPoint   = "10,000";
+
+                            $pBJInfo_i    = $("#pBJInfo_" + i);         // BJ 정보 Selector
+                            $imgBJPic_i  = $("#imgBJPic_" + i);       // BJ img Selector
+                            if(i < 2) {                 // 1, 2위 정보값 셋팅
+                                $imgBJPic_i.attr("src", bjPic);
+                                $pBJInfo_i.contents()[0].nodeValue = bjChannel;
+                                $pBJInfo_i.find("span").text(bjName);
+                                $("#divRPPoint_" + i).text(bjRPPoint);
+                            } else if(i >= 2) {
+                            // NEW BJ
+                            contentsNewBj += "<div class=\"bjsBox\">" +
+                                                     "   <div class=\"bjBox\">" +
+                                                     "       <img src=" + bjPic + " alt=\"bj0" + (i+4) + "\">" +
+                                                     "       <div class=\"rankings\">"+ (i+1) +"위</div>" +
+                                                     "       <div class=\"black\"></div>" +
+                                                     "       <div class=\"rp\">" +
+                                                     "           <div class=\"icon\">RP</div>" +
+                                        // TODO : ↘ DB 테이블 확정되면 변수 수정하기.
+                                                     "           <div class=\"point\">" + bjRPPoint + "</div>" +
+                                                     "       </div>" +
+                                                     "       <a href=\"#\" class=\"btn\">VOTE</a>" +
+                                                     "   </div>" +
+                                                     "   <div class=\"txtBox\">" + bjChannel + "<span>" + bjName + "</span></div>" +
+                                                     "</div>";
+                            }
+                        }
+                    // console.log(contentsNewBj);
+                    $(".newBJ").html(contentsNewBj);
+
+                    // } else { // 데이터 에러
+                    //     console.log("Data Error : " + reseult.message);
+                    // }
+
+                } else { // 데이터 에러
+                    console.log("Data Error : " + reseult.message);
+                }
+            }, error: function(xhr, status, errorThrown){
+                console.log("통신에러 : " + xhr.responseText);
+            }
+        }); // end of ajax
+    } // end of updateData()
+
+    $(document).ready(function () {
+        // $(".boyList").show();
+        updateData(); // 첫번째 업데이트
+        setInterval(updateData, 5000);
+    });
+
+</script>
+</html>

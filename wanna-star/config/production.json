@@ -1,0 +1,112 @@
+{
+    "env":"production",
+    "fqdn":"dev.castvot.com",
+    "is_production":true,
+    "cdn_host":"https://img.castvot.com/",
+    "server":{
+        "listen":{"port":8081}
+    },
+    "basic_auth":{
+        "users": { "castvot" : "dkanehahffk" },
+        "challenge": true,
+        "realm": "DevOnly"
+    },
+    "cachekey":{
+        "main":"realmain",
+	"bfc2_main":"bfc2_realmain",
+	"bfc3_main":"bfc3_realmain",
+        "boysPrefix":"realboys:"
+    },
+        "main_max":32,
+    "s3resizeimg":{
+        "bucketname":"img1.castvot.com",
+        "tmpdir":"/tmp/uploads/",
+        "options":{
+            "aws": {
+                "accessKeyId": "AKIAJ6P5FHXLUEF3GZPQ",
+                "secretAccessKey": "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",
+                "path": "public/files/bfc/",
+                "region": "ap-northeast-2",
+                "acl": "public-read"
+            },
+            "cleanup": {
+                "versions": true,
+                "original": true
+            },
+            "original": {
+                "awsImageAcl": "public-read"
+            },
+            "versions": [{
+                "maxHeight": 220,
+                "maxWidth": 220,
+                "format": "jpg",
+                "suffix": "-small",
+                "quality": 100,
+                "awsImageAcl" : "public-read"
+            },{
+                "maxHeight": 280,
+                "maxWidth": 350,
+                "format": "jpg",
+                "suffix": "-large",
+                "quality": 100,
+                "awsImageAcl" : "public-read"
+            }]
+        }
+    },
+    "redis":{
+        "host": "bfc-cache.j8yhsn.ng.0001.apn2.cache.amazonaws.com",
+        "port": 6379,
+        "db": 0,
+        "prefix":"bfc:"
+    },
+    "session":{
+        "type":"redis",
+        "prefix": "bfcsess:",
+        "ttl": 3600,
+        "resave":true,
+        "saveUninitialized":false,
+        "cookie": {
+            "domain":"dev.castvot.com",
+            "secure": true
+        },
+        "name":"bfcsess",
+        "secret":"23ujEaf2DAwq"
+    },
+    "mysql":{
+        "dbconn":{
+            "host": "aa1ex0a4ot0ft9l.cagxgiwozqpg.ap-northeast-2.rds.amazonaws.com",
+            "user": "devop",
+            "password": "ZYdc6#74!8wR?PU$DK!j",
+            "port": 3306,
+            "database": "develop",
+            "connectionLimit" : 50,
+            "connectTimeout":3000,
+            "waitForConnections":false,
+			"multipleStatements": true,
+			"queueLimit" : 0
+        }
+    },
+    "passport":{
+        "naver": {
+            "clientID": "hJlaPR0jcgTOPSfVYTXt",
+            "clientSecret": "9UOZEYa_N2",
+            "callbackURL": "https://dev.castvot.com/login/auth/naver/callback"
+        },
+        "kakao": {
+            "clientID": "57c5cee4ddec46f9d9396dce5dd824d5",
+            "clientSecret": "AyQrVRuBgZ53zhdSuebxoDAPYSeMxMNy",
+            "callbackURL": "https://dev.castvot.com/login/auth/kakao/callback"
+        },
+        "google": {
+            "clientID": "388890221172-b666b47o06gg7mu51c5u7m3pgr4r54fc.apps.googleusercontent.com",
+            "clientSecret": "CobW5ucV-gwfM4D0QeQ3kbCe",
+            "callbackURL": "https://dev.castvot.com/login/auth/google/callback"
+        },
+        "facebook": {
+            "clientID": "1943929839032860",
+            "clientSecret": "c045bd465b8fb86629b3743b33aeef22",
+            "callbackURL": "https://dev.castvot.com/login/auth/facebook/callback",
+            "profileFields":["id","displayName","emails"]
+        }
+    }
+}

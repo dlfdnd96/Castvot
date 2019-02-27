@@ -1,0 +1,290 @@
+<% include ./include/header %>
+
+    <section>
+        <div class="mainImg">
+            <div class="txtBox">
+                <h3>잘나가는 BJ중 최고를 가린다!</h3>
+                <h2>나의 워너비 BJ는 누구?</h2>
+                <p>투표기간 : 2018.11.22 ~ 2018.12.10</p>
+            </div>
+        </div>
+
+        <div class="bgBox">
+
+            <div class="sc01">
+                <div class="hotBJ">
+
+
+
+
+
+                </div>
+
+                <div class="todayBJ">
+
+
+
+
+
+                </div>
+            </div>
+
+            <div class="sc02">
+
+                <div class="newBJ">
+
+
+
+
+                </div>
+
+            </div>
+            <div class="sc03">
+                <div>
+                    <div class="hotTV">
+                        <div class="title"><h4>HOT TV</h4></div>
+                        <div class="slide">
+                            <div class="bxslider">
+                                <div class="bjsBox">
+                                    <iframe src="https://www.youtube.com/embed/KR9nyo8hAdI?playsinline=0&fs=1&rel=0" frameborder="0" allowfullscreen ></iframe>
+                                    <div class="tvInfo">
+                                        <div class="title">메이코패스 김재원, 얼굴 공개dkfsdljksfdlkjsfdljkfsd</div>
+                                        <div class="bjName">꽈뚜룹</div>
+                                    </div>
+                                </div>
+                                <div class="bjsBox">
+                                    <iframe src="https://www.youtube.com/embed/NUQP-VojEqE?playsinline=0&fs=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>
+                                    <div class="tvInfo">
+                                        <div class="title">9년차와 5년차 남친의 여친 체취(?)맞추기 대결! 내공보소ㄷㄷㄷ(꿀민기 VS 꿀민뚜) [엔조이커플 enjoycouple]</div>
+                                        <div class="bjName">엔조이커플enjoycouple</div>
+                                    </div>
+                                </div>
+                                <div class="bjsBox">
+                                    <iframe src="https://www.youtube.com/embed/PR0rwcqPvVM?playsinline=0&fs=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>
+                                    <div class="tvInfo">
+                                        <div class="title">초중딩썰 모음7[써리툰 모아보기]</div>
+                                        <div class="bjName">써리의 영상툰</div>
+                                    </div>
+                                </div>
+                                <div class="bjsBox">
+                                    <iframe src="https://www.youtube.com/embed/DSTuZahX8Ik?playsinline=0&fs=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>
+                                    <div class="tvInfo">
+                                        <div class="title">짬뽕과 짬뽕밥의 차이는? 밴쯔 비교먹방</div>
+                                        <div class="bjName">밴쯔</div>
+                                    </div>
+                                </div>
+                                <div class="bjsBox">
+                                    <iframe src="https://www.youtube.com/embed/fu2vzBLlEOg?playsinline=0&fs=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>
+                                    <div class="tvInfo">
+                                        <div class="title">이 떡볶이는 지옥에서 왔다.. "각자" 재료 사오기 챌린지! - 뜰로그 - [잠뜰]</div>
+                                        <div class="bjName">잠뜰 TV</div>
+                                    </div>
+                                </div>
+                                <div class="bjsBox">
+                                    <iframe src="https://www.youtube.com/embed/HbiOrV-b81M?playsinline=0&fs=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>
+                                    <div class="tvInfo">
+                                        <div class="title">첫사랑이 짝사랑일 때 [연플리 시즌3] - EP.10</div>
+                                        <div class="bjName">플레이리스트</div>
+                                    </div>
+                                </div>
+                                <div class="bjsBox">
+                                    <iframe src="https://www.youtube.com/embed/buW64r63gWM?playsinline=0&fs=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>
+                                    <div class="tvInfo">
+                                        <div class="title">수제 사탕가게에서 사탕만들기 대결놀이 바쁘다 바빠 kbs tv유치원 - 지니</div>
+                                        <div class="bjName">헤이지니 Hey Jini</div>
+                                    </div>
+                                </div>
+                                <div class="bjsBox">
+                                    <iframe src="https://www.youtube.com/embed/WrVTobcX6B4?playsinline=0&fs=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>
+                                    <div class="tvInfo">
+                                        <div class="title">동생에게만 착한 대형견 🌼 소녀의 행성이 돌보는 법 🐥</div>
+                                        <div class="bjName">소녀의행성GirlsPlanet</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <% include ./include/footer %>
+
+</div>
+</body>
+<script>
+
+    function updateData(){
+        $.ajax({
+            type: "GET",
+            url: "/ajax/update_bjlist",
+            crossDomain: false,
+            contentType: "application/json",
+            processData: false,
+            dataType: "json",
+            success: function(data){
+                var result = $.parseJSON(JSON.stringify(data));
+                var data = $.parseJSON(result.data);
+
+                if(result.status === true){
+                    let contentsHotBj = "<div class=\"title\"><h4>HOT BJ</h4></div>";
+
+                    // HOT BJ 초기화
+                    for(let i = 0; i < 2; i++){
+                        contentsHotBj +=
+                                        "<div class=\"bjsBox\">" +
+                                        "   <div class=\"bjBox\">" +
+                                        "       <img src='https://img.castvot.com/files/bfc/" + String(data[i].bj_photo1) + "-small.jpg' alt='bj0" + (i+1) + "'>" +
+                                        "       <div class=\"black\"></div>" +
+                                        "       <div class=\"rp\">" +
+                                        "           <div class=\"icon\">RP</div>" +
+                                        // TODO : ↘ DB 테이블 확정되면 변수 수정하기.
+                                        "           <div class=\"point\">" + (parseInt(data[i].total * 1000) / 1000) + "</div>" +
+                                        "       </div>" +
+                                        "       <a href=\"#\" class=\"btn\">VOTE</a>" +
+                                        "   </div>" +
+                                        "   <div class=\"txtBox\">" + data[i].bj_rep_channel + "<span>" + data[i].bj_name + "</span></div>" +
+                                        "</div>";
+                    }
+                    $(".hotBJ").html(contentsHotBj);
+
+
+
+
+                    // TODAY BJ 초기화
+                    let contentsTodayBj = "<div class=\"title\"><h4>TODAY BJ</h4></div>";
+
+
+
+                    contentsTodayBj +=
+                                        "<div class=\"bjsBox\">" +
+                                        "   <div class=\"bjBox\">" +
+                                        "       <img src=\"img/bj03.png\" alt=\"bj03\">" +
+                                        "       <div class=\"black\"></div>" +
+                                        "       <div class=\"rp\">" +
+                                        "           <div class=\"icon\">RP</div>" +
+                                        "           <div class=\"point\">10,000</div>" +
+                                        "       </div>" +
+                                        "       <a href=\"#\" class=\"btn\">VOTE</a>" +
+                                        "   </div>" +
+                                        "   <div class=\"txtBox\">아프리카 TV <span>외질혜</span></div>" +
+                                        "</div>";
+
+
+                    $(".todayBJ").html(contentsTodayBj);
+
+
+
+                    // NEW BJ 초기화
+                    let contentsNewBj = "<div class=\"title\"><h4>NEW BJ</h4></div>\n";
+                    let newestBj = data;
+                    let len = data.length;
+                    let tmp;
+                    for(let i = 0; i < 4; i++){
+                        for(let j = 0; j < len-i-1; j++){
+                            if(newestBj[j].mdate > newestBj[j+1].mdate){
+                                tmp = newestBj[j];
+                                newestBj[j] = newestBj[j+1];
+                                newestBj[j+1] = tmp;
+                            }
+                        }
+                    }
+
+                    for(let i = 0; i < 4; i++){
+                        contentsNewBj += "<div class=\"bjsBox\">" +
+                            "   <div class=\"bjBox\">" +
+                            "       <img src=\"https://img.castvot.com/files/bfc/" + String(newestBj[len-i-1].bj_photo1) + "-small.jpg\" alt=\"bj" + (i+4) + "\" >" +
+                            "       <div class=\"black\"></div>" +
+                            "       <div class=\"rp\">" +
+                            "           <div class=\"icon\">RP</div>" +
+                    // TODO : ↘ DB 테이블 확정되면 변수 수정하기. (parseInt(newestBj[len-i].total * 1000) / 1000)
+                            "           <div class=\"point\">" + 10000 + "</div>" +
+                            "       </div>" +
+                            "       <a href=\"#\" class=\"btn\">VOTE</a>" +
+                            "   </div>" +
+                            "   <div class=\"txtBox\">" + data[i].bj_rep_channel + "<span>" + newestBj[len-i-1].bj_name + "</span></div>" +
+                            "</div>";
+
+                    }
+                    $(".newBJ").html(contentsNewBj);
+
+                } else { // 데이터 에러
+                    console.log("Data Error : " + reseult.message);
+                }
+            }, error: function(xhr, status, errorThrown){
+                console.log("통신에러 : " + xhr.responseText);
+            }
+        }); // end of ajax
+    } // end of updateData()
+
+    $(document).ready(function () {
+        // $(".boyList").show();
+        updateData(); // 첫번째 업데이트
+        setInterval(updateData, 5000);
+    });
+
+
+</script>
+
+
+<!-- 슬라이더 script -->
+
+
+
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script>
+    // 슬라이더
+    var hotBJBoxW = $('.hotBJ .bjsBox .bjBox').width();
+    $('.hotBJ .bjsBox .bjBox').height(hotBJBoxW);
+    $('.hotBJ .bjsBox .bjBox').width(hotBJBoxW);
+    $('.todayBJ .bjsBox .bjBox').height(hotBJBoxW);
+    $('.todayBJ .bjsBox .bjBox').width(hotBJBoxW);
+
+    var newBJBoxW = $('.newBJ .bjsBox .bjBox').width();
+    $('.newBJ .bjsBox .bjBox').height(newBJBoxW);
+    $('.newBJ .bjsBox .bjBox').width(newBJBoxW);
+    $('.hotTV .bjsBox .bjBox').height(newBJBoxW);
+    $('.hotTV .bjsBox .bjBox').width(newBJBoxW);
+
+    $('.bxslider').bxSlider({
+        slideWidth: newBJBoxW,   // 슬라이드 너비
+        minSlides: 2,      // 최소 노출 개수
+        maxSlides: 4,      // 최대 노출 개수
+        slideMargin: 10,    // 슬라이드간의 간격
+        auto: true,        // 자동 실행 여부
+        autoHover: true,   // 마우스 호버시 정지 여부
+        adaptiveHeight: true,
+        touchEnabled: false,
+        moveSlides: 2,
+        pause: 3000,
+        speed: 300
+    });
+
+    $('.bx-prev').text('');
+    $('.bx-next').text('');
+
+    $(document).on('click','.bx-next, .bx-prev, bx-pager-link',function() {
+        $('.bxslider').stopAuto();
+        $('.bxslider').startAuto();
+    });
+
+    $(window).resize(function() {
+        var hotBJBoxWR = $('.hotBJ .bjsBox').width();
+        $('.bjBox>img').css('width','100%').css('height','auto');
+        $('.hotBJ .bjsBox .bjBox').height(hotBJBoxWR);
+        $('.hotBJ .bjsBox .bjBox').width(hotBJBoxWR);
+        $('.todayBJ .bjsBox .bjBox').height(hotBJBoxWR);
+        $('.todayBJ .bjsBox .bjBox').width(hotBJBoxWR);
+
+        var newBJBoxWR = $('.newBJ .bjsBox').width();
+        $('.newBJ .bjsBox .bjBox').height(newBJBoxWR);
+        $('.newBJ .bjsBox .bjBox').width(newBJBoxWR);
+        $('.hotTV .bjsBox .bjBox').height(newBJBoxWR);
+        $('.hotTV .bjsBox .bjBox').width(newBJBoxWR);
+    });
+
+
+
+</script>
+</html>

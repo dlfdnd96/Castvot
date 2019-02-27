@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122925852-5"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-122925852-5');
+</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>워너STAR</title>
+	<link rel="stylesheet" type="text/css" href="https://img.castvot.com/css/intro2.css">
+	<script src="https://img.castvot.com/js/jquery-2.1.1.min.js"></script>
+	<script src="https://img.castvot.com/js/jquery-ui.js"></script>
+    <link rel="shortcut icon" href="https://img.castvot.com/faviconStar.ico">
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="container">
+            <img src="https://img.castvot.com/img/intro_users_pc2_2.png" alt="" class="pc-only">
+			<img src="https://img.castvot.com/img/intro_users_m2.png" alt="" class="mob-only">
+            <div class="add">
+				<div class="addbj"><a href="/newbj/others" target="_blank"></a></div>
+				<div class="addself"><a href="/newbj/self" target="_blank"></a></div>
+			</div>
+			<div class="videocontainer">
+				<img src="https://img.castvot.com/img/text2.png" alt="에이지엠이 응원하는 워너 BJ투표! 수현이와 유경이의 영상을 꼭 보러 와주세요!">
+				<div class="ytcontainer" style="margin-top: 7.5%">
+					<div class="iframe">
+						<div class="vframe">
+							<a class="popup" href="#" data-link="https://www.youtube.com/embed/hMlUeP0i7JU?ecver=2" data-title="수현 test">
+								<img src="https://img.castvot.com/img/sh.png" alt="수현">
+								<div class="play sh"><div class="box-rotate"></div></div>
+							</a>
+						</div>
+					</div>
+					<div class="iframe">
+						<div class="vframe">
+							<a class="popup" href="#" data-link="https://www.youtube.com/embed/ps_3uGX87IU?ecver=2" data-title="유경 test">
+								<img src="https://img.castvot.com/img/yk.png" alt="유경">
+								<div class="play sh"><div class="box-rotate"></div></div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- //container -->
+
+		<% include include/footer_intro2 %>
+
+		<div id="popbg"></div>
+		<div id="video-view">
+			<!-- <div id="btnClose"><img src="https://img.castvot.com/img/icon_closeW.png" alt="닫기"></div> -->
+		</div>
+   </div><!-- //wrap -->
+</body>
+<script>
+	$('.popup , .play a').click(function () {
+
+		// 스크롤 막기
+		$('html, body').on('scroll touchmove mousewheel', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			return false;
+		});
+	console.log('jquery ok');
+		$('#popbg').show();
+		var $this = $(this);
+		var $iframe = $("<iframe>").attr("src", $this.data("link")).css({"width": "100%"});
+		var $title = $("<h1>").text($this.data("title"));
+		$("#video-view").append($iframe);
+	 	$iframe.wrap("<div class='class-video'>");
+		
+		setTimeout(function() {
+			var $btnClose = $("<img>").attr({"id"	: 'btnClose',
+											 "src"	: '.\/img\/icon_closeW\.png'});
+			$('.class-video').append($btnClose);
+		}, 500);
+	});
+	$(document).off('click', '#btnClose').on('click', '#btnClose', function() {
+
+		// 스크롤 다시 허용
+		$('html, body').off('scroll touchmove mousewheel');
+
+		$(this).hide();
+		$('#popbg').hide();
+		$('.class-video').hide();
+
+	})
+
+</script>
+</html>

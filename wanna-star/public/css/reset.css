@@ -1,0 +1,15 @@
+html, body, div, h1, h2, h3, h4, h5, h6, p, ol, ul, li, dl, dt, dd,
+fieldset, form, label, legend, button,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, nav, article, section, aside, canvas, details, figcaption, figure, hgroup, menu, summary, time, mark, audio, video
+* { margin:0; padding:0; border:0; font-size:100%; vertical-align:baseline; background:transparent; border-collapse:collapse;}
+html,body { width:100%; height:100%;}
+article, nav, article, section, aside, canvas, menu, details, figcaption, figure, footer { display:block;  }
+ul, ol, li { list-style:none; }
+a { margin:0; padding:0; font-size:100%; text-decoration:none; vertical-align:baseline; color:inherit; font-weight: inherit; background:transparent; }
+img { vertical-align:top; }
+table { border-collapse:collapse; border-spacing:0; }
+input { margin:0; padding:0; box-sizing:content-box; vertical-align:top; appearance:none; border-radius:0; }
+
+dd { -webkit-margin-start:0 !important; }
+ul { -webkit-padding-start:0 !important; }

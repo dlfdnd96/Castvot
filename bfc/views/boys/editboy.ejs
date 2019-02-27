@@ -1,0 +1,83 @@
+<% include ../include/header %>
+       <div id="main ">
+                <div class="main_top ">
+                    <div id="content" class="sub_content_bg">
+
+                <form method="post" enctype="multipart/form-data" id="frm" name="frm" action="/ajax/newboy">
+                   <!-- 정보수정 요청 -->
+                    <div>
+                        <div class="main_txt">정보수정 요청</div>
+                        <table class="tg">
+                            <tr>
+                                <th>수정 사유 </th>
+                                <td>
+                                    <div class="select">
+                                        <select title="수정요청" id="ask_edit">
+                                            <option value="option1"> 선택 1 </option>
+                                            <option value="option1"> 선택 2 </option>
+                                            <option value="option1"> 선택 3 </option>
+                                        </select>
+                                    </div>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <th>기타</th>
+                                <td>
+                                    <textarea maxlength="1000" placeholder="수정 내용을 적어주세요. (1,000자 이내 가능)"></textarea>
+                                </td>
+                            </tr>
+			    <tr>
+			        <th>후보자명</th>
+			        <td><input type="text" id="uploader_name" name="uploader_name" size="30" placeholder="후보자명을 입력해주세요."></td>
+			    </tr>
+                            <tr>
+                                    <th>후보자 공식 SNS</th>
+                                    <td><input type="text" id="uploader_sns" name="uploader_sns" size="60" placeholder="대표 URL 1개만 가능합니다." ><p class="red">※ 후보자 본인의 공식 SNS로 확인이 안 될 경우, 등록이 거절 될 수도 있습니다.</p></td>
+                                </tr>
+                            <tr>
+                                    <th>대표이미지</th>
+                                    <td>
+                                        <input type="file" name="upload_files" id="main_image">
+                                        <span>용량 크기는 _____ 이하로 첨부해주세요.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>서브이미지1</th>
+                                    <td>
+                                        <input type="file" name="upload_files" id="sub_image">
+                                        <span>용량 크기는 _____ 이하로 첨부해주세요.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>서브이미지2</th>
+                                    <td>
+                                        <input type="file" name="upload_files" id="sub_image2">
+                                        <span>용량 크기는 _____ 이하로 첨부해주세요.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                   <th></th>
+                                    <td colspan="2" class="red"><p>※ 후보자에 대한 부적절한 이미지는 등록이 거절될 수 도 있습니다.</p></td>
+                                </tr>
+                        </table>                      
+
+                    </div>
+                    
+                </form>
+                   <ul class="botton_right">
+                      <li><a href="#" class="btn_submit">전송하기</a></li>
+                      <li><a href="javascript:history.back()" class="btn_back">취소하기</a></li>
+                    </ul>
+                    </div>                    <!-- 배너 5개 -->
+                    <div id="banner_list">
+                            <% include ../include/right_ad %>
+                    </div>  
+                </div>
+            </div> <!-- sub -->
+            <% include ../include/footer %>
+
+                
+
+			</div><!--wrap-->
+    </body>
+</html>

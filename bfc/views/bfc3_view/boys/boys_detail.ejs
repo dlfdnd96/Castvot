@@ -1,0 +1,310 @@
+﻿<% include ../include/header %>
+
+<section>
+    <div class="sub_content">
+
+
+      <div class="detailBox">
+           <div class="content_left">
+              <div class="boytitle">
+                  <h2><%= data.boyname %></h2>
+                  <ul class="snb">
+                       <li>
+                           <a href="https://www.facebook.com/sharer/sharer.php?u=https://bfc.castvot.com/bfc3/boys/<%= boyid %>" title="페이스북으로 연결" target="_blank"></a>
+                       </li>
+                       <li>
+                           <a href="https://twitter.com/intent/tweet?text=TEXT&url=https://bfc.castvot.com/bfc3/boys/<%= boyid %>" title="트위터로 연결" target="_blank"></a>
+                       </li>
+                       <li>
+                           <a href="#" title="주소복사하기" id="clip_target"></a>
+                       </li>
+                   </ul>
+              </div>
+               <div class="container">
+                   <h2><%= data.boyname %></h2>
+                   <div class="slider">
+                       <ul class="bxslider">
+                           <li><div class="boy_img img01" id="img01"></div></li>
+                           <li><div class="boy_img img02" id="img02"></div></li>
+                           <li><div class="boy_img img03" id="img03"></div></li>
+                       </ul>
+                       <div class="bx-pager">
+                           <a data-slide-index="0" href=""><div class="boy_img2 img11" id="img11" title="<%= data.photo1_src %>"></div><span class="opacity"></span></a>
+                           <a data-slide-index="1" href=""><div class="boy_img2 img22" id="img22" title="<%= data.photo2_src %>"></div></a>
+                           <a data-slide-index="2" href=""><div class="boy_img2 img33" id="img33" title="<%= data.photo3_src %>"></div></a>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="content_right">
+               <div class="top">
+                   <h2>상세정보</h2>
+                   <ul class="snb">
+                       <li>
+                           <a href="https://www.facebook.com/sharer/sharer.php?u=https://bfc.castvot.com/bfc3/boys/<%= boyid %>" title="페이스북으로 연결" target="_blank"></a>
+                       </li>
+                       <li>
+                           <a href="https://twitter.com/intent/tweet?text=TEXT&url=https://bfc.castvot.com/bfc3/boys/<%= boyid %>" title="트위터로 연결" target="_blank"></a>
+                       </li>
+                       <li>
+                           <a href="#" title="주소복사하기" id="clip_target"></a>
+                       </li>
+                   </ul>
+               </div>
+               <div class="mid">
+                   <dl>
+                       <dt>총 RP</dt>
+                       <dd><span id="uuu_total"></span> RP</dd>
+                   </dl>
+               </div>
+               <div class="btom">
+                   <dl>
+                       <dt>생년월일</dt>
+                       <dd class="tmtxt"><%= data.year %>년 <%= data.month %>월 <%= data.date %>일</dd>
+                   </dl>
+                   <dl>
+                       <dt>혈액형</dt>
+                       <dd><%= data.blood_type %></dd>
+                   </dl>
+                   <dl>
+                       <dt>소속사</dt>
+                       <dd class="tmtxt"><%= data.management %></dd>
+                   </dl>
+                   <dl>
+                       <dt>소개</dt>
+                       <dd>
+                           <%- data.reason %>
+                       </dd>
+                   </dl>
+               </div>
+           </div>
+
+      </div>
+
+        <div class="btn_right">
+            <a href="#" class="button btn_blue" id="btn_vote">투표하기</a>
+            <a class="button" href="../../bfc3" id="go_main">메인으로</a>
+        </div>
+    </div>
+</section>
+
+<% include ../include/footer %>
+
+<div class="vote01 popup">
+    <div class="popwrap">
+        <div>
+            본 투표 서비스는 홍콩에 있는 “Casting Vote Solution HK Limited”에서 제공 됩니다.<br>
+(한국) 국민남친선발대회의 대상자는 한국에서 활동하고 있는 혹은 한국인에 한하며, 대상자는 추천에 의해서만 선발 됩니다. “Casting Vote Solution HK Limited”는 추천을 하지 않음을 명시 합니다. <br>
+투표에 사용되기 위하여 지갑에 모인 암호화폐의 보관 및 관리권은 “Casting Vote Solution HK Limited”에 있습니다. <br>
+국민남친 후보자 1인으로 인하여 투표된 암호화폐의 배분 계획은 다음과 같습니다. <br><br>
+
+                       <table>
+                           <tr>
+                               <th>캐스팅보트 솔루션 홍콩</th>
+                               <th>point X 0%</th>
+                               <th>플랫폼 운영 수입</th>
+                           </tr>
+                           <tr>
+                               <th>Korean Agent(한국 대리인)</th>
+                               <th>point X 0%</th>
+                               <th>홍보, 마케팅,용역 비용 </th>
+                           </tr>
+                           <tr>
+                               <th>국민 남친 후보자</th>
+                               <th>point X 100%</th>
+                               <th>하단 주석 참조</th>
+                           </tr>
+                       </table>
+<br>
+(주석) <br>
+1. “Ranking Point” (이하 RP)란 퀀텀(QTUM)의 가치를 수치로 산정한 값을 말합니다.<br>
+2. RP에 반영되는 퀀텀(QTUM)의 시세는 모두 ‘대한민국 표준시’의 ‘코인마켓캡’ 기준으로 합니다.<br>
+* Ranking Point 산정공식 : “ RP = [ QTUM x QTUM의 USD시세 ] ”<br>
+3. ‘보팅어워즈 (Voting Awards)’란 투표 후보자에게 제공되는 ‘최종 RP’를 기준으로 산출된 ‘암호화폐의 양’과 ‘추가 혜택’을 말합니다. <br>
+- 국민남친 후보자는 보팅어워즈로써 투표된 QTUM 전체를 받게 됩니다.<br>
+- 단, 보팅어워즈가 ‘RP 100’ 이하 일 경우, 팬들의 이름으로 구호단체에 기부 됩니다.<br>
+4. Korean Agent(한국 대리인)는 투표 대상자에게 보팅어워즈를 전달하기 위해서 최선을 다할 것입니다. <br>
+5. 투표 종료 후 3주까지도 투표 대상자에게 보팅어워즈를 전달하지 못하거나, 투표 대상자가 보팅어워즈의 인수를 거부한 경우, 팬들의 이름으로 구호단체에 자동 기부 됩니다.<br>
+6. 투표 도중, 초상권, 사용권 등, 모든 법적 이유 등으로, 더이상 투표가 진행 될 수 없을 경우, 투표에 사용된 암호화폐는 반환되지 않으며, 자동으로 팬들의 이름으로 구호단체에 기부 됩니다.<br>
+7. 투표에 사용된 암호화폐는 기술적인 이유 등으로 취소 및 환불이 절대 불가능 합니다. <br>
+8. 투표 대상자 혹은 구호단체에 전달될 보팅어워즈는 세금을 공제하기 전의 상태이므로 실제 전달되는 보팅어워즈와 상이 할 수 있습니다.<br><br>
+위의 모든 조건에 동의 하실 경우에 한해서만 투표가 가능합니다.<br><br>
+<b class="red">위의 모든 조건에 동의 하시지 않으실 경우, 절대 투표에 참여 하시면 안됩니다.</b><br><br>
+        </div>
+        <div class="btn_right">
+            <a href="#" class="button btn_blue" id="btn_agree">동의함</a>
+            <a href="#" class="button" id="btn_disa">동의하지않음</a>
+        </div>
+    </div>
+</div>
+<div class="popup vote02">
+    <div class="popwrap">
+        <div class="box">
+            <p class="red">※주의사항</p>
+            <p class="red">코인은 퀀텀주소로 보내주세요.</p>
+        </div>
+        <div class="addr" id="qtum">
+            <h4>QTUM Deposit Address</h4>
+            <p id="qtum_account2"></p>
+            <ul class="qr_or_copy">
+                <li><a href="#" class="btn_qr">Show QR Code</a></li>
+                <li><a href="#" class="btn_copy_qr" id="copyQtum">Copy Address</a></li>
+            </ul>
+        </div>
+        <p>
+            코인이 들어있는 지갑(wallet)에서 정확한 주소를 입력하시고, 투표에 사용하실 코인 수를 입력하신 후 전송하여 주시기 바랍니다.  주소는 QR코드를 활용 하실 수 있습니다.
+        </p>
+        <div class="btn_right">
+            <a href="#" class="btn_close button_blue">닫기</a>
+        </div>
+    </div>
+</div>
+<div class="popup vote03 xrp">
+    <div class="popwrap">
+        <p>XRP Deposit Address</p>
+        <div class="qr_img" id="xrp_qrcode"></div>
+        <p class="qr_addr" id="xrp_account"></p>
+        <div class="btn_right">
+            <a href="#" class="close_xrp btn_blue">닫기</a>
+        </div>
+    </div>
+</div>
+<div class="popup vote03 qtum">
+    <div class="popwrap">
+        <p>QTUM Deposit Address</p>
+        <div class="qr_img" id="qtum_qrcode"></div>
+        <p class="qr_addr" id="qtum_account"></p>
+        <div class="btn_right">
+            <a href="#" class="close_qtum btn_blue">닫기</a>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    $(document).ready( function() {
+
+        $("#img01").css('background-image', "url(' <%= data.photo1 %> ')");
+        $("#img02").css('background-image', "url(' <%= data.photo2 %> ')");
+        $("#img03").css('background-image', "url(' <%= data.photo3 %> ')");
+        $("#img11").css('background-image', "url(' <%= data.photo1 %> ')");
+        $("#img22").css('background-image', "url(' <%= data.photo2 %> ')");
+        $("#img33").css('background-image', "url(' <%= data.photo3 %> ')");
+
+
+        var accounts = <%- data.accounts %>;
+        //var xrp = accounts.filter( function ( x ) { return x.coinname === 'XRP' } )[0]
+
+        //var xrp_score = xrp.usd * (xrp.coins -20 );
+        //$("#xrp_account").text(xrp.account);
+        //$("#xrp_account2").text(xrp.account);
+        //$('#xrp_qrcode').qrcode({text:xrp.account});
+        //$("#xrp_total").text(xrp.coins);
+
+        var qtum = accounts.filter( function ( x ) { return x.coinname === 'QTUM' } )[0];
+        var qtum_score = qtum.usd * qtum.coins;
+        var qtum_total = Math.floor(qtum.coins*1000)/1000;
+
+
+        $("#qtum_account").text(qtum.account);
+        $("#qtum_account2").text(qtum.account);
+        $('#qtum_qrcode').qrcode({text:qtum.account});
+        $("#qtum_total").text(qtum_total);
+
+        var uuu_tmp = qtum_score;
+        var uuu_total = Math.floor(uuu_tmp*1000)/1000;
+        $("#uuu_total").text(uuu_total);
+
+        $( function(){
+
+            //      $(".btn_vote").click(function(){
+            //          alert("투표 기간이 아닙니다.");
+            //      });
+
+            $("#btn_vote").click(function(){
+                $(".vote01").show();
+            });
+
+            $("#btn_agree").click(function(){
+                $(".vote01").fadeOut();
+                $(".vote02").fadeIn();
+            });
+
+            $("#btn_disa").click(function(){
+                $(".vote01").fadeOut();
+            });
+
+            $(".btn_xrp").click(function(){
+                $("#qtum").addClass("dnone");
+                $("#xrp").removeClass("dnone");
+            });
+
+            $(".btn_qtum").click(function(){
+                $("#xrp").addClass("dnone");
+                $("#qtum").removeClass("dnone");
+            });
+
+            $(".x_or_q > li>a").click(function(){
+                $('.x_or_q > li>a').removeClass("on");
+                $(this).addClass("on");
+            });
+
+            $(".on").click(function(){
+                $('.x_or_q > li>a').removeClass("on");
+                $(this).addClass("on");
+            });
+
+            $("#xrp .btn_qr").click(function(){
+                $('.xrp').fadeIn();
+            });
+
+            $("a.close_xrp").click(function(){
+                $(".vote03").fadeOut();
+            });
+
+            $("#qtum .btn_qr").click(function(){
+                $(".qtum").fadeIn();
+            });
+
+            $("a.close_qtum").click(function(){
+                $(".vote03").fadeOut();
+            });
+
+            $(".btn_close").click(function(){
+                $(".vote02").fadeOut();
+            });
+
+            $('#copyXrp').on( 'click', function () {
+                copyText( $('#xrp p').text() )
+            } );
+
+            $('#copyQtum').on( 'click', function () {
+                copyText( $('#qtum p').text() )
+            } );
+            $('#clip_target').on('click', function () {
+                copyText( location.href )
+            });
+        });
+        $('.bxslider').bxSlider ({
+            pagerCustom: '.bx-pager',
+            easing: 'linear',
+            pause: 2000,
+            speed: 300,
+            infiniteLoop : true,
+            auto: true,
+            autoHover: true,
+            touchEnabled: true,
+        })
+        function copyText ( text ) {
+            var temp = document.createElement( "input" );
+            document.body.appendChild( temp );
+            temp.value = text;
+            temp.select();
+            document.execCommand( "Copy" );
+            document.body.removeChild( temp );
+            alert("클립보드에 복사되었습니다.");
+        }
+
+    });
+</script>
+</body>
+</html>

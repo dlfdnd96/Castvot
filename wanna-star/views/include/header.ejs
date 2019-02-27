@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>워너STAR</title>
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://img.castvot.com/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="https://img.castvot.com/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://img.castvot.com/css/swiper.css">
+    <link rel="shortcut icon" href="https://img.castvot.com/faviconStar.ico">
+    <script src="https://img.castvot.com/js/jquery-2.1.1.min.js"></script>
+    <script src="https://img.castvot.com/js/jquery-ui.js"></script>
+    <script src="https://img.castvot.com/js/bj.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <div class="navbar">
+        <a href="#">
+            <span class="bar-1"></span>
+            <span class="bar-2"></span>
+            <span class="bar-3"></span>
+        </a>
+    </div>
+    <header>
+        <div class="logo" onclick="location.href='/'"><img src="https://img.castvot.com/img/logo.png" alt="logo" /></div>
+        <div class="search">
+            <div><img id="src_icon" src="https://img.castvot.com/img/search.png" alt="search" style=""></div>
+            <div><input id="inputName" type="text" placeholder="여기에서 검색해보세요!" maxlength="32" minlength="2" onkeyup="enterkey();"/></div>
+        </div>
+        <div id="bg" class="bg"></div>
+        <nav>
+            <ul>
+                <!-- <li onclick="location.href='/';">홈</li> -->
+                <li onclick="location.href='/bjlist';">BJ보기</li>
+                <li class="dep2">추천하기
+                    <ul>
+                        <li onclick="location.href='/newbj/others';">추천하기</li>
+                        <li onclick="location.href='/newbj/self';">등록하기</li>
+                    </ul>
+                </li>
+                <li onclick="location.href='/gallery';">갤러리</li>
+                <li onclick="location.href='/notice';">공지사항</li>
+                <li onclick="location.href='/partners';">파트너</li>
+            </ul>
+
+            <div class="m_banner">
+              <a href="https://bfc.castvot.com/bfc3"><img src="../img/m_bfc_banner.jpg" alt=""></a>
+            </div>
+        </nav>
+    </header>

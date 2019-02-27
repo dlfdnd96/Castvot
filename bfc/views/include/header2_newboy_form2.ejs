@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+        <title>국민남친선발대회2</title>
+        <!--<link rel="stylesheet" type="text/css" href="/public/css/style2_newboy2.css">-->
+        <link rel="stylesheet" type="text/css" href="../css/style2_newboy2.css">
+        <script src="https://img.castvot.com/js/jquery-2.1.1.min.js"></script>
+        <script src="https://img.castvot.com/js/jquery-ui.js"></script>
+        <script src="https://img.castvot.com/js/jquery.bxslider.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+            // 위로 가기
+            $(window).scroll(function() {
+            var windowT = $(window).scrollTop();
+            if(windowT == 0) {
+            $('.moveTop').stop().animate({'bottom':'-100px', 'opacity':'0'},300);
+            }
+            else {
+            $('.moveTop').stop().animate({'bottom':'50px', 'opacity':'1'},300);
+            }
+            });
+            $('.moveTop').click(function() {
+            $('.moveTop').stop().animate({'bottom':'-100px', 'opacity':'0'},300);
+            $('html').stop().animate({'scrollTop':'0'},500);
+            });
+            $('.moreBtn').mouseenter(function() {
+            $(this).find('.bg').stop().animate({'width':'0'},180).animate({'width':'100%'},150);
+            });
+
+            // 반응형일 때 햄버거 메뉴
+            var cnt = 0;
+            $(".navbar").click(function(){
+            cnt++;
+            $this = $(this);
+            $this.toggleClass("after");
+            $this.addClass('on');
+            if(cnt%2==1) {
+            $('header nav').show().stop().animate({'right':'0'},200);
+            $this.css('position','fixed');
+            }
+            else {
+            $('header nav').fadeOut().stop().animate({'right':'-80%'},100);
+            $this.css('position','absolute');
+            }
+            });
+
+            // 메인 이미지 크기 맞추기
+            var topimgBoxW = $('.rankTop>.imgBox').width();
+            if($(window).width() < 400) {
+            $('.rankTop>.imgBox').height((topimgBoxW/5)*3);
+            }
+            var boximgBoxW = $('.rBox:not(".recommend")>.imgBox').width();
+            $('.rBox:not(".recommend")>.imgBox').height((boximgBoxW/5)*3);
+            $(window).resize(function() {
+            var topimgBoxW = $('.rankTop>.imgBox').width();
+            if($(window).width() < 400) {
+            $('.rankTop>.imgBox').height((topimgBoxW/5)*3);
+            }
+            else {
+            $('.rankTop>.imgBox').height(398);
+            }
+            var boximgBoxW = $('.rBox:not(".recommend")>.imgBox').width();
+            $('.rBox:not(".recommend")>.imgBox').height((boximgBoxW/5)*3);
+            });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="wrap">
+            <div class="navbar">
+                <a href="#">
+                    <span class="bar-1"></span>
+                    <span class="bar-2"></span>
+                    <span class="bar-3"></span>
+                </a>
+            </div>
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="/bfc2">홈<div class="line"></div></a></li>
+                        <li><a href="/bfc2/notice">공지사항<div class="line"></div></a></li>
+                        <li><a href="/bfc2/boylist">후보목록<div class="line"></div></a></li>
+                        <li><a href="/bfc2/prize">보팅어워즈<div class="line"></div></a></li>
+                    </ul>
+                </nav>f
+                <div class="mainBox">
+                    <div>
+                        <div class="logo">
+                            <a href="/bfc2"></a><img src="https://img.castvot.com/img/logo2.png" alt="로고">
+                        </div>
+                        <div class="subTxt">캐스팅보트솔루션의 두번째 프로젝트!! 국민남친선발대회 두번째 이야기!! <br />많은 투표와 참여 부탁드립니다.</div>
+                        <div class="voteTime">등록기간 | 2018.10.12 ~ 2018.10.21 까지</div>
+                    </div>
+                </div>
+            </header>

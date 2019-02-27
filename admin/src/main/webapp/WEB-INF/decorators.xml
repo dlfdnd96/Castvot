@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<decorators defaultdir="/decorators">
+	
+	<!-- 예외 페이지 등록 -->
+	<excludes>
+		<pattern>/ajax/*</pattern>
+		<pattern>/resources/*</pattern>
+		<pattern>/file/*</pattern>
+		<pattern>/**/file/*</pattern>
+		<pattern>/login*</pattern>
+	</excludes>
+
+	<decorator name="topNav" page="/WEB-INF/views/layout/topNav.jsp"/>
+	<decorator name="leftNav" page="/WEB-INF/views/layout/leftNav.jsp"/>
+	
+	<!-- 레이아웃 -->
+	<decorator name="layout" page="/WEB-INF/views/layout/layout.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+	
+	<!-- 
+	<decorator name="popupLayout" page="/WEB-INF/views/jsp/fragments/layout/popupLayout.jsp">
+		<pattern>/**/popup/*</pattern> 
+	</decorator> -->
+		 
+</decorators>

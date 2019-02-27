@@ -1,0 +1,291 @@
+<% include ../include/header %>
+
+            <div id="sub">
+               <div class="sub_top">
+                    <div id="content" class="sub_content_bg">
+
+                       <!-- 후보추천 -->
+                        <div>
+                            <div class="main_txt">후보추천</div>
+                            <table class="tg">
+                                <tr>
+                                    <th>추천인</th>
+                                    <td><%= is_login ? username : 'Error' %></td>
+                                </tr>
+                                <tr>
+                                    <th>추천 후보자명</th>
+                                    <td><input type="text" id="uploader_name" name="uploader_name" size="30" placeholder="후보자명을 입력해주세요." required ></td>
+                                </tr>
+                                <tr>
+                                    <th>후보자 공식 SNS</th>
+                                    <td><input type="text" id="uploader_sns" name="uploader_sns" size="60" placeholder="대표 URL 1개만 가능합니다." ><p class="red">※ 후보자 본인의 공식 SNS로 확인이 안 될 경우, 등록이 거절 될 수도 있습니다.</p></td>
+                                </tr>
+                                <tr>
+                                    <th>후보자 추천 사유</th>
+                                    <td>
+                                        <textarea class="textarea" id="reason" name="reason" maxlength="1000" placeholder="텍스트를 입력해주세요. (1,000자 이내 가능)" required ></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                   <th></th>
+                                   <td class="red"><p>※ 후보자에 대한 허위사실, 비방, 선동, 정치적 발언 등 부적절한 언어 사용 시 등록이 거절될 수도 있습니다.</p></td>
+                                </tr>
+                                <tr>
+                                    <th>이미지 선택</th>
+                                    <td>
+                                        <div class="col-md-8 newboy_img_upload">
+                                            <p class="help-block">용량 크기는 10MB 이하로 첨부해주세요. <br />메인 이미지는 1대1 정사각형 비율로 첨부해주세요.</p>
+
+                                            <table>
+                                                <tr>
+                                                    <td><img style="height:220px;width:220px;" id="preview1" src="https://img.castvot.com/img/unknown.jpg"></td>
+                                                    <td>
+                                                        메인(필수)<br />
+                                                        <input id="photo1" type="file" name="photo" required>
+                                                        <input id="photokey1" name="photokey1" type="hidden" value="">
+                                                        <input id="photo1_src" name="photo1_src" type="text" placeholder="※ 반드시 사진 출처를 입력해주세요.   ex) 본인/url주소/기타(상세설명)" size="80">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img style="height:220px;width:220px;" id="preview2" src="https://img.castvot.com/img/unknown.jpg"></td>
+                                                    <td>
+                                                        서브1<br />
+                                                        <input id="photo2" type="file" name="photo">
+                                                        <input id="photokey2" name="photokey2" type="hidden" value="">
+                                                        <input id="photo2_src" name="photo2_src" ype="text" placeholder="※ 반드시 사진 출처를 입력해주세요.   ex) 본인/url주소/기타(상세설명)" size="80">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img style="height:220px;width:220px;" id="preview3" src="https://img.castvot.com/img/unknown.jpg"></td>
+                                                    <td>
+                                                        서브2<br />
+                                                        <input id="photo3" type="file" name="photo">
+                                                        <input id="photokey3" name="photokey3" type="hidden" value="">
+                                                        <input id="photo3_src" name="photo3_src" type="text" placeholder="※ 반드시 사진 출처를 입력해주세요.   ex) 본인/url주소/기타(상세설명)" size="80">
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                   <th></th>
+                                    <td class="red"><p>※ 후보자에 대한 부적절한 이미지는 등록이 거절될 수 도 있습니다.</p></td>
+                                </tr>
+                                <tr>
+                                    <th>추천인 이름 공개</th>
+                                    <td>
+                                       <form>
+                                            <input type="checkbox" id="agree" name="agree"
+                                            value="y" checked /> 동의함 &nbsp;&nbsp;
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                        <ul class="botton_right">
+                            <li><a href="#" class="btn_newboy" id="btn_newboy_id">등록요청</a></li>
+                            <li><a href="/logout">취소하기</a></li>
+                        </ul>
+                    </form>
+                    </div><!-- content -->
+
+                    <!-- 배너 5개 -->
+                    <div id="banner_list">
+                            <% include ../include/right_ad %>
+                    </div>
+            </div>
+
+            </div> <!-- sub -->
+
+            <div class="newboy_finish_popup">
+                <div>
+                   <img src="https://img.castvot.com/img/icon_check.png" alt="">
+                   <p><b>후보자 추천이 완료</b> 되었습니다.<br>관리자 확인 후 게시됩니다.<br></p>
+                    <ul class="botton_center">
+                        <li><a href="/logout" class="modal_btn_close_redir_home">확인</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="newboy_error_popup">
+                <div>
+                   <img src="https://img.castvot.com/img/icon_check.png" alt="">
+                   <p><b>에러가 발생하였습니다.</b><br><span></span><br></p>
+                    <ul class="botton_center">
+                        <li><a href="#" id="modal_btn_close_error">확인</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        <% include ../include/footer %>
+
+        </div> <!-- wrap -->
+
+        <script>
+
+            $(document).ready(function () {
+
+                $(".newboy_error_popup").hide();
+
+                $("#photo1, #photo2, #photo3").change(function(e) {
+                    e.preventDefault();
+                    var file = this.files[0];
+                    var form = new FormData();
+                    var reg=/(.jpg|.gif|.png)$/;
+                    var form_idx = e.target.id.slice(-1);
+
+                    if (!reg.test(file.name)) {
+                        alert('파일형식은 jpg, gif, png 만 지원합니다.'+file);
+                        $("#"+e.target.id).val("");
+                        return false;
+                    }
+
+                    if (file.size > 1024 * 1024 * 10 ) {
+                        alert('파일크기는 10MB 이하입니다.');
+                        $("#"+e.target.id).val("");
+                        return false;
+                    }
+
+                    form.append('image', file);
+
+                    $.ajax({
+                        url: '/ajax/imgupload',
+                        method: 'POST',
+                        processData: false,
+                        contentType: false,
+                        data: form,
+                        success: function(data){
+                            var json = $.parseJSON(JSON.stringify(data));
+                            if(json.status === true){
+                                $("#preview"+form_idx).attr('src',"https://img.castvot.com/files/bfc/"+json.imgkey+"-small.jpg");
+                                $("#photokey"+form_idx).val(json.imgkey);
+                            } else {
+                                $("#"+e.target.id).val("");
+                                PopupError(data.messages);
+                            }
+                        },
+                        error: function (xhr, status, errorThrown) {
+                            PopupError("통신에러:"+xhr.responseText)
+                        }
+                    });
+                });
+                // 중복 클릭 방지
+                $('#btn_newboy_id').off("click").on('click',function(e) {
+                    e.preventDefault();
+                    var input_error = false;
+                    var input_focus = undefined;
+                    var boy_name = $('#uploader_name').val();
+                    var boy_sns = $('#uploader_sns').val();
+                    var boy_reason = $('#reason').val();
+                    var photokey1 = $('#photokey1').val();
+                    var photokey2 = $('#photokey2').val();
+                    var photokey3 = $('#photokey3').val();
+                    var photo1_src = $('#photo1_src').val();
+                    var photo2_src = $('#photo2_src').val();
+                    var photo3_src = $('#photo3_src').val();
+
+                    // focus 이동으로 인하여 역순으로 기입
+                    if (photokey3.length > 1 && photo3_src.length < 3) {
+                        $('#photo3_src').after('<span class="error">서브3 사진 출처를 기입해 주세요.</span>');
+                        input_error="사진 출처를 기입해 주세요.";
+                        input_focus = '#photo3_src';
+                    }
+                    if (photokey2.length > 1 && photo2_src.length < 3) {
+                        $('#photo2_src').after('<span class="error">서브2 사진 출처를 기입해 주세요.</span>');
+                        input_error="사진 출처를 기입해 주세요.";
+                        input_focus = '#photo2_src';
+                    }
+                    if (photo1_src.length < 3) {
+                        $('#photo1_src').after('<span class="error">메인 사진 출처를 기입해 주세요.</span>');
+                        input_error="사진 출처를 기입해 주세요.";
+                        input_focus = '#photo1_src';
+                    }
+                    if (photokey1.length < 1) {
+                        $('#photo1').after('<span class="error">사진을 등록해주세요.</span>');
+                        input_error="메인 사진을 등록해주세요.";
+                        input_focus = '#photo1';
+                    }
+                    if (boy_reason.length < 10) {
+                        $('#reason').after('<span class="error">10글자 이상 입력해 주세요.</span>');
+                        input_error="후보자 추천 사유를 10글자 이상 입력해 주세요.";
+                        input_focus = '#reason';
+                    }
+                    if (boy_sns.length < 10) {
+                        $('#uploader_sns').after('<span class="error">URL을 입력해 주세요.</span>');
+                        input_error="후보자 공식 SNS를 입력해 주세요.";
+                        input_focus = '#uploader_sns';
+                    }
+                    if (boy_name.length < 2) {
+                        $('#uploader_name').after('<span class="error">2글자 이상 입력하여야 합니다.</span>');
+                        input_error="추천 후보자명은 2글자 이상 입력하여야 합니다.";
+                        input_focus = '#uploader_name';
+                    }
+
+                    if (input_error) {
+                        alert(input_error);
+                        $(input_focus).focus();
+                        return;
+                    } else {
+                        $.ajax({
+                            type: "POST",
+                            url: "/ajax/newboy",
+                            crossDomain:false,
+                            contentType: "application/json",
+                            processData: false,
+                            dataType: "json",
+                            data:JSON.stringify({
+                                uploader_name:  boy_name,
+                                uploader_sns: boy_sns,
+                                reason: boy_reason,
+                                agree:$('#agree').prop('checked'),
+                                photokey1: photokey1,
+                                photokey2: photokey2,
+                                photokey3: photokey3,
+                                photo1_src:photo1_src,
+                                photo2_src:photo2_src,
+                                photo3_src:photo3_src,
+                            }),
+                            success:function ( data ) {
+                                var result = $.parseJSON(JSON.stringify(data))
+
+                                if(result.status === true){
+                                    $(window).scrollTop(0);
+                                    $(".newboy_finish_popup").fadeIn();
+                                } else {
+                                    PopupError(result.messages);
+                                }
+                            },
+                            error: function (xhr, status, errorThrown) {
+                                PopupError("통신에러:"+xhr.responseText);
+                            }
+                        });
+                    }
+
+                });
+
+                function PopupError(text){
+                    $(window).scrollTop(0);
+                    $(".newboy_error_popup").text(text);
+                    $(".newboy_error_popup").fadeIn();
+                }
+                $(".modal_btn_close_redir_home").click(function(){
+                    $(".newboy_finish_popup").fadeOut();
+                    setTimeout("location.href='/logout'");
+                });
+
+                $("#modal_btn_close_error").click(function(){
+                    $(".newboy_error_popup").hide();
+                });
+
+            });
+
+        </script>
+
+    </body>
+</html>

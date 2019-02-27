@@ -1,0 +1,288 @@
+<% include ../bfc2_view/include/header %>
+
+<div class="main_popup">
+    <div>
+        <img src="https://img.castvot.com/img/popup.png" alt="">
+        <img class="mp_close" src="https://img.castvot.com/img/X_ico.png" alt="">
+    </div>
+</div>
+
+<section>
+
+    <% include ../bfc2_view/include/search %>
+
+        <div class="rankTop" id="rankTop">
+        <!--<div class="imgBox"></div>-->
+        <!--<div class="txtBox">-->
+            <!--<div class="rankNum"></div>-->
+            <!--<div class="name">-->
+                <!--<h4 id="">MMO 엔터테인먼트</h4>-->
+                <!--<h3>강다니엘</h3>-->
+            <!--</div>-->
+            <!--<div class="date">-->
+                <!--<h3>20살</h3></h3>-->
+                <!--<h4>180cm (A형)</h4>-->
+            <!--</div>-->
+            <!--<div class="des">"투표를 기다립니다~"</div>-->
+            <!--<div class="btn" onclick="location.href='#';">상세보기</div>-->
+        <!--</div>-->
+        <!--<div class="line">-->
+            <!--<div class="tl"></div>-->
+            <!--<div class="br"></div>-->
+        <!--</div>-->
+    </div>
+
+    <div class="rankBox" id="rankBox">
+        <div class="rBox recommend">
+            <!--<div class="txtBox">-->
+                <!--<div>-->
+                    <!--<h2>국민남친을<br />추천해주세요!!</h2>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="imgBox"><img src="https://img.castvot.com/img/unknown.jpg" alt="unknown"/></div>-->
+            <!--<div class="txtBox">-->
+                <!--<div class="btn" onclick="location.href='./newboy/newboy_form.html';">국민남친 추천하기</div>-->
+            <!--</div>-->
+        </div>
+        <div class="rBox">
+            <!--<div class="imgBox"><div class="rankingNum">2</div></div>-->
+            <!--<div class="txtBox">-->
+                <!--<h3>차은우</h3>-->
+                <!--<h3 class="name">23살</h3>-->
+                <!--<h5>180cm (O형)</h5>-->
+                <!--<div class="btn">상세보기</div>-->
+            <!--</div>-->
+            <!--<div class="line">-->
+                <!--<div class="tl"></div>-->
+                <!--<div class="br"></div>-->
+            <!--</div>-->
+        </div>
+        <div class="rBox">
+            <!--<div class="imgBox"><div class="rankingNum">3</div></div>-->
+            <!--<div class="txtBox">-->
+                <!--<h3>뷔</h3>-->
+                <!--<h3 class="name">20살</h3>-->
+                <!--<h5>178cm (AB형)</h5>-->
+                <!--<div class="btn">상세보기</div>-->
+            <!--</div>-->
+            <!--<div class="line">-->
+                <!--<div class="tl"></div>-->
+                <!--<div class="br"></div>-->
+            <!--</div>-->
+        </div>
+        <div class="rBox">
+            <!--<div class="imgBox"><div class="rankingNum">4</div></div>-->
+            <!--<div class="txtBox">-->
+                <!--<h3>송중기</h3>-->
+                <!--<h3 class="name">27살</h3>-->
+                <!--<h5>178cm (B형)</h5>-->
+                <!--<div class="btn">상세보기</div>-->
+            <!--</div>-->
+            <!--<div class="line">-->
+                <!--<div class="tl"></div>-->
+                <!--<div class="br"></div>-->
+            <!--</div>-->
+        </div>
+        <div class="rBox">
+            <!--<div class="imgBox"><div class="rankingNum">5</div></div>-->
+            <!--<div class="txtBox">-->
+                <!--<h3>박보검</h3>-->
+                <!--<h3 class="name">25살</h3>-->
+                <!--<h5>182cm (A형)</h5>-->
+                <!--<div class="btn">상세보기</div>-->
+            <!--</div>-->
+            <!--<div class="line">-->
+                <!--<div class="tl"></div>-->
+                <!--<div class="br"></div>-->
+            <!--</div>-->
+        </div>
+        <div class="rBox">
+            <!--<div class="imgBox"><div class="rankingNum">6</div></div>-->
+            <!--<div class="txtBox">-->
+                <!--<h3>공유</h3>-->
+                <!--<h3 class="name">33살</h3>-->
+                <!--<h5>184cm (B형)</h5>-->
+                <!--<div class="btn">상세보기</div>-->
+            <!--</div>-->
+            <!--<div class="line">-->
+                <!--<div class="tl"></div>-->
+                <!--<div class="br"></div>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div class="moreBtn" onclick="location.href='/bfc2/boylist';"><div class="bg"></div>다른 국민남친 보러가기</div>
+</section>
+<script>
+
+    $(document).ready( function() {
+
+        function updateData() {
+            $.ajax({
+                type: "GET",
+                url: "/ajax/update_boylist",
+                crossDomain:false,
+                contentType: "application/json",
+                processData: false,
+                dataType: "json",
+                error: function (xhr, status, errorThrown) {
+                    console.log("통신에러:"+errorThrown);
+                },
+                success:function ( data ) {
+                    // console.log("boylist.ejs ajax success 성공!");
+                    var result = $.parseJSON(JSON.stringify(data));
+                    var data = $.parseJSON(result.data);
+                    // console.log(data.length);
+                    //console.log(data[0].boy_name);
+                    var rankbox =" ";
+                    if(data.length >= 6) {
+                        for(i=0; i<7; i++){
+                            if(i==0) {
+                                $("#rankTop").html(" <div class=\"imgBox\" id=\"imgBox_1\" ></div>\n" +
+                                    "        <div class=\"txtBox\">\n" +
+                                    "            <div class=\"rankNum\"></div>\n" +
+                                    "            <div class=\"name\">\n" +
+                                    "                <h4 id=\"\">"+data[i].management+"</h4>\n" +
+                                    "                <h3>"+data[i].name+"</h3>\n" +
+                                    "            </div>\n" +
+                                    "            <div class=\"date\">\n" +
+                                    "                <h3>"+String(2018-Number(data[i].year))+"살"+"</h3></h3>\n" +
+                                    "                <h4>"+data[i].blood_type+"형</h4>\n" +
+                                    "            </div>\n" +
+                                    "            <div class=\"des\">\"투표를 기다립니다~\"</div>\n" +
+                                    "            <div class=\"btn\" onclick=\"location.href='/bfc2/boys/"+ data[i].boyid+"';\">상세보기</div>\n" +
+                                    "        </div>\n" +
+                                    "        <div class=\"line\">\n" +
+                                    "            <div class=\"tl\"></div>\n" +
+                                    "            <div class=\"br\"></div>\n" +
+                                    "        </div>\n");
+                                $(".imgBox").css('background-image',"url('https://img.castvot.com/files/bfc/"+data[i].photo +"-small.jpg')");
+                                FixWindowSize();
+                            }else{
+                                var rankBox_2=
+                                    " <div class=\"rBox\">\n" +
+                                    "            <div class=\"imgBox\" id=\"imgBox_"+(i+1)+"\";><div class=\"rankingNum\">"+(i+1)+"</div></div>\n" +
+                                    "            <div class=\"txtBox\">\n" +
+                                    "                <h3>"+data[i].name+ "</h3>\n" +
+                                    "                <h3 class=\"name\">"+String(2018-Number(data[i].year))+"살</h3>\n" +
+                                    "                <h5>"+data[i].blood_type+"형</h5>\n" +
+                                    "                <div class=\"btn\" onclick=\"location.href='/bfc2/boys/"+ data[i].boyid+"';\">상세보기</div>\n" +
+                                    "            </div>\n" +
+                                    "            <div class=\"line\">\n" +
+                                    "                <div class=\"tl\"></div>\n" +
+                                    "                <div class=\"br\"></div>\n" +
+                                    "            </div>\n" +
+                                    "        </div>\n";
+                                rankbox = rankbox + rankBox_2;
+                                //$(".imgBox").css('background-image',"url('https://img.castvot.com/files/bfc/"+data[i].photo +"-small.jpg')");
+                            }
+
+                        }
+                        $("#rankBox").html(rankbox);
+                        FixWindowSize();
+                        /*
+                        for (i=0; i<6; i++) {
+                            console.log(data[i].photo);
+                            $(".rBox :nth-child(" + (i + 1) + ") ").css('background-image', "url('https://img.castvot.com/files/bfc/" + data[i].photo + "-small.jpg')");
+                        }
+                        */
+                        //$("#rankBpx").html(rankbox);
+                        for (i=2;i<=7;i++) {
+                            $("#imgBox_"+i).css('background-image', "url('https://img.castvot.com/files/bfc/" + data[i-1].photo + "-small.jpg')");
+                            FixWindowSize();
+                        }
+                    }else {
+                        var rankbox2 =" ";
+                        var empty = 6 - data.length;
+                        for(i=0; i<data.length; i++){
+                            if(i==0) {
+                                $("#rankTop").html(" <div class=\"imgBox\" id=\"imgBox_1\" ></div>\n" +
+                                    "        <div class=\"txtBox\">\n" +
+                                    "            <div class=\"rankNum\"></div>\n" +
+                                    "            <div class=\"name\">\n" +
+                                    "                <h4 id=\"\">"+data[i].management+"</h4>\n" +
+                                    "                <h3>"+data[i].name+"</h3>\n" +
+                                    "            </div>\n" +
+                                    "            <div class=\"date\">\n" +
+                                    "                <h3>"+String(2019-Number(data[i].year))+"살</h3></h3>\n" +
+                                    "                <h4>"+data[i].blood_type+"형</h4>\n" +
+                                    "            </div>\n" +
+                                    "            <div class=\"des\">\"투표를 기다립니다~\"</div>\n" +
+                                    "            <div class=\"btn\" onclick=\"location.href='/bfc2/boys/"+ data[i].boyid+"';\">상세보기</div>\n" +
+                                    "        </div>\n" +
+                                    "        <div class=\"line\">\n" +
+                                    "            <div class=\"tl\"></div>\n" +
+                                    "            <div class=\"br\"></div>\n" +
+                                    "        </div>\n");
+                                $(".imgBox").css('background-image',"url('https://img.castvot.com/files/bfc/"+data[i].photo +"-small.jpg')");
+                                FixWindowSize();
+                            }else{
+                                var rankBox_2=
+                                    " <div class=\"rBox\">\n" +
+                                    "            <div class=\"imgBox\" id=\"imgBox_"+(i+1)+"\";><div class=\"rankingNum\">"+(i+1)+"</div></div>\n" +
+                                    "            <div class=\"txtBox\">\n" +
+                                    "                <h3>"+data[i].name+ "</h3>\n" +
+                                    "                <h3 class=\"name\">"+String(2018-Number(data[i].year))+"살</h3>\n" +
+                                    "                <h5>"+data[i].blood_type+"형</h5>\n" +
+                                    "                <div class=\"btn\" onclick=\"location.href='/bfc2/boys/"+ data[i].boyid+"';\">상세보기</div>\n" +
+                                    "            </div>\n" +
+                                    "            <div class=\"line\">\n" +
+                                    "                <div class=\"tl\"></div>\n" +
+                                    "                <div class=\"br\"></div>\n" +
+                                    "            </div>\n" +
+                                    "        </div>\n";
+                                rankbox = rankbox + rankBox_2;
+                            }
+                        }
+                        /*
+                        for(i=0; i<empty; i++) {
+                            var rankBox_3=
+                                "<div class=\"rBox recommend\">\n" +
+                                "            <div class=\"txtBox\">\n" +
+                                "                <div>\n" +
+                                "                    <h2>국민남친을<br />추천해주세요!!</h2>\n" +
+                                "                </div>\n" +
+                                "            </div>\n" +
+                                "            <div class=\"imgBox\"><img src=\"https://img.castvot.com/img/unknown.jpg\" alt=\"unknown\"/></div>\n" +
+                                "            <div class=\"txtBox\">\n" +
+                                "                <div class=\"btn\" onclick=\"location.href='./newboy/newboy_form.html';\">국민남친 추천하기</div>\n" +
+                                "            </div>\n" +
+                                "        </div>";
+                            rankbox = rankbox + rankBox_3;
+                            FixWindowSize();
+                        }
+                        */
+                        $("#rankBox").html(rankbox);
+                        FixWindowSize();
+
+                        for (i=2; i<=data.length;i++) {
+                            $("#imgBox_"+i).css('background-image', "url('https://img.castvot.com/files/bfc/" + data[i-1].photo + "-small.jpg')");
+                            FixWindowSize();
+                        }
+
+
+
+                    }
+                }
+            }); // end ajax
+
+        }
+        $(document).ready(function () {
+            $(".boyList").show();
+            updateData(); // 첫번째 업데이트
+            setInterval(updateData, 5000);
+        });
+        // updateData()
+
+
+    })
+
+    // 메인 팝업
+    $(function(){
+        $(".mp_close").click(function(){
+            $(".main_popup").fadeOut();
+        });
+    });
+
+</script>
+
+<% include ../bfc2_view/include/footer %>

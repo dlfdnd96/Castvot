@@ -1,0 +1,653 @@
+<% include ../include/header %>
+
+<section class="recommendC">
+    <% include ../include/s_visual %>
+
+    <div class="bgBox">
+        <div class="sub_content">
+            <h4>추천하기</h4>
+            <div class="recomBox">
+                <h5>BJ 정보등록</h5>
+                <div class="pinkBox">
+                    <form>
+                        <div class="formBox">
+                            <div class="title"><span>* </span>이름(별칭)<div class="wrong hideImport">2~20자의 한글, 영문, (-,_)인지 체크!</div></div>
+                            <div class="inputBox"><input id="bjName" type="text" maxlength="20" placeholder="2~20자의 한글, 영문과 특수문자 (-), (_)만 사용가능" required=""/></div>
+                        </div>
+                        <div class="formBox">
+                            <div class="title"><span>* </span>활동영역<div class="wrong hideImport">선택을 해주세요.</div></div>
+                            <div class="inputBox"><select id="selCastContent" name="castContent" required="">
+                                <option value="">선택해주세요</option>
+                                <option value="아프리카tv">아프리카tv</option>
+                                <option value="유튜브">유튜브</option>
+                                <option value="트위치tv">트위치tv</option>
+                                <option value="카카오tv">카카오tv</option>
+                                <option value="기타">기타</option>
+                            </select></div>
+                        </div>
+                        <div class="formBox">
+                            <div class="title"><span>* </span>방송콘텐츠<div class="wrong hideImport">주소를 맞게 입력했는지 확인해주세요.</div></div>
+                            <div class="inputBox"><input id="txtHashtag" type="text" maxlength="20" placeholder="#쿡방 #코딩 #게임 #뷰티 등 최대20자" required=""/></div>
+                        </div>
+                        <div class="formBox formEmail bjEmail">
+                            <div class="title">이메일<div class="wrong hideImport">입력한 내용이 맞는지 확인해주세요.</div></div>
+                            <div class="inputBox"><input id="txtBjId" type="text"/></div>
+                            <div class="at">@</div>
+                            <div class="inputBox noTxt" ><input id="txtBjEmail" type="text" style="background: rgb(255, 255, 255);"/></div>
+                            <div class="inputBox" style="border: 1px solid #ddd;"><select id="selBjEmail" name="email">
+                                <!-- <option value="">선택해주세요</option> -->
+                                <option value="">직접입력</option>
+                                <option value="@naver.com">naver.com</option>
+                                <option value="@daum.com">daum.net</option>
+                                <option value="@nate.com">nate.com</option>
+                                <option value="@gmail.com">gmail.com</option>
+                                <option value="@hotmail.com">hotmail.com</option>
+                                <option value="@yahoo.co.kr">yahoo.co.kr</option>
+                                <option value="@empas.com">empas.com</option>
+                                <option value="@dreamwiz.com">dreamwiz.com</option>
+                                <option value="@korea.com">korea.com</option>
+                                <option value="@hanmir.com">hanmir.com</option>
+
+                            </select></div>
+                        </div>
+                        <div class="formBox formTextA">
+                            <div class="title">BJ 소개</div>
+                            <textarea id="txtBjInfo" placeholder="1000자 이하, 특수기호 사용 가능. &#13;&#10;욕설/비하/선동 및 bj에게 피해를 줄 수 있는 말 또는 법적분쟁이 일어날 소지가 있는 말은 반려될 수 있습니다." maxlength="1000"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="recomBox">
+                <h5>BJ 콘텐츠등록</h5>
+                <div class="pinkBox">
+                    <form>
+                        <div class="formBox formImage">
+                            <div class="title"><span>* </span>대표이미지<div class="wrong hideImport">파일을 첨부하였는지 확인해주세요.</div></div>
+<!-- 남친2랑 구조 통일 우선 대표이미지inputbox에만 적용 -->
+                            <div class="inputBox filebox">
+                                <input id="fileName1" type="text" readonly="readonly" placeholder="권장 사이즈 250 X 250" class="upload-name">
+                                <div>
+                                    <label for="photo1">파일찾기</label>
+                                    <input id="photokey1" name="photokey1" type="hidden" value="">
+                                    <input id="photo1" type="file" class="upload-hidden" onchange="javascript: document.getElementById('fileName1').value = this.value">
+                                </div>
+                            </div>
+<!--  //  -->
+                            <div class="inputBox"><input id="photo1_src" type="text" placeholder="출처를 입력해주세요." required=""/></div>
+                        </div>
+                        <div class="formBox formImage">
+                            <div class="title"><span>* </span>서브이미지1<div class="wrong hideImport">파일을 첨부하였는지 확인해주세요.</div></div>
+                            <div class="inputBox filebox">
+                                    <input id="fileName2" type="text" readonly="readonly" placeholder="권장 사이즈 460 X 460" class="upload-name">
+                                    <div>
+                                        <label for="photo2">파일찾기</label>
+                                        <input id="photokey2" name="photokey2" type="hidden" value="">
+                                        <input id="photo2" type="file" class="upload-hidden" onchange="javascript: document.getElementById('fileName2').value = this.value">
+                                    </div>
+                                </div>
+                            <div class="inputBox"><input id="photo2_src" type="text" placeholder="출처를 입력해주세요." required=""/></div>
+                        </div>
+                        <div class="formBox formImage">
+                            <div class="title">서브이미지2</div>
+                            <div class="inputBox filebox">
+                                <input id="fileName3" type="text" readonly="readonly" placeholder="권장 사이즈 460 X 460" class="upload-name">
+                                <div>
+                                    <input type="text" value="파일선택" class="label">
+<!--                                    <label for="photo3">파일찾기</label>-->
+                                    <input id="photokey3" name="photokey3" type="hidden" value="">
+                                    <input id="photo3" type="file" class="upload-hidden" onchange="javascript:document.getElementById('fileName3').value = this.value">
+                                </div>
+                            </div>
+                            <div class="inputBox"><input id="photo3_src" type="text" placeholder="출처를 입력해주세요."/></div>
+                        </div>
+                        <div class="formBox formImage">
+                            <div class="title">서브이미지3</div>
+                            <div class="inputBox filebox">
+                                <input id="fileName4" type="text" readonly="readonly" placeholder="권장 사이즈 460 X 460" class="upload-name">
+                                <div>
+                                    <label for="photo4">파일찾기</label>
+                                    <input id="photokey4" name="photokey4" type="hidden" value="">
+                                    <input id="photo4" type="file" class="upload-hidden" onchange="javascript:document.getElementById('fileName4').value = this.value">
+                                </div>
+                            </div>
+                            <div class="inputBox"><input id="photo4_src" type="text" placeholder="출처를 입력해주세요."/></div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="twoDan">
+                            <div class="formBox">
+                                <div class="title"><span>* </span>방송채널1<div class="wrong hideImport">주소를 입력했는지 확인해주세요.</div></div>
+                                <div class="inputBox"><input id="txtUrlChnl01" type="text" placeholder="ex) 유튜브,트위치,아프리카TV 등 주소(url) 입력" required=""/></div>
+                            </div>
+                            <div class="formBox">
+                                <div class="title">방송채널2</div>
+                                <div class="inputBox"><input id="txtUrlChnl02" type="text" placeholder="ex) 유튜브,트위치,아프리카TV 등 주소(url) 입력"/></div>
+                            </div>
+                            <div class="formBox">
+                                <div class="title">방송채널3</div>
+                                <div class="inputBox"><input id="txtUrlChnl03" type="text" placeholder="ex) 유튜브,트위치,아프리카TV 등 주소(url) 입력"/></div>
+                            </div>
+                        </div>
+                        <div class="twoDan twodan">
+                            <div class="formBox">
+                                <div class="title">팬클럽</div>
+                                <div class="inputBox"><input id="txtUrlFan" type="text" placeholder="팬클럽 주소(url)를 입력"/></div>
+                            </div>
+                            <div class="formBox">
+                                <div class="title"><span>* </span>인기영상1<div class="wrong hideImport">주소를 입력했는지 확인해주세요.</div></div>
+                                <div class="inputBox"><input id="txtUrlBest01" type="text" placeholder="영상 주소(url) 입력" required=""/></div>
+                            </div>
+                            <div class="formBox">
+                                <div class="title"><span>* </span>인기영상2<div class="wrong hideImport">주소를 입력했는지 확인해주세요.</div></div>
+                                <div class="inputBox"><input id="txtUrlBest02" type="text" placeholder="영상 주소(url) 입력" required=""/></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="recomBox">
+                <h5>추천인 정보등록</h5>
+                <div class="pinkBox">
+                    <form>
+                        <div class="formBox">
+                            <div class="title"><span>* </span>이름<div class="wrong hideImport">2~20자의 한글, 영문, (-,_)인지 체크!</div></div>
+                            <div class="inputBox"><input id="userName" type="text" maxlength="20" placeholder="2~20자의 한글, 영문과 특수문자 (-), (_)만 사용가능" required=""/></div>
+                        </div>
+                        <div class="formBox formEmail comEmail">
+                            <div class="title"><span>* </span>이메일<div class="wrong hideImport">입력한 내용이 맞는지 확인해주세요.</div></div>
+                            <div class="inputBox"><input id="txtUserId" type="text" required=""/></div>
+                            <div class="at">@</div>
+                            <div class="inputBox noTxt"><input id="txtComEmail" type="text" style="background: rgb(255, 255, 255);" required=""/></div>
+                            <div class="inputBox" style="border: 1px solid #ddd;">
+                                <select id="selComEmail" name="email">
+                                    <!-- <option value="">선택해주세요</option> -->
+                                    <option value="">직접입력</option>
+                                    <option value="@naver.com">naver.com</option>
+                                    <option value="@daum.com">daum.net</option>
+                                    <option value="@nate.com">nate.com</option>
+                                    <option value="@gmail.com">gmail.com</option>
+                                    <option value="@hotmail.com">hotmail.com</option>
+                                    <option value="@yahoo.co.kr">yahoo.co.kr</option>
+                                    <option value="@empas.com">empas.com</option>
+                                    <option value="@dreamwiz.com">dreamwiz.com</option>
+                                    <option value="@korea.com">korea.com</option>
+                                    <option value="@hanmir.com">hanmir.com</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="formBox formPhone">
+                            <div class="title"><span>* </span>연락처<div class="wrong hideImport">입력한 내용이 맞는지 확인해주세요.</div></div>
+                            <div class="inputBox" style="border: 1px solid #ddd;"><select id="selMobile" name="phone">
+                                <!-- <option value="">선택해주세요</option> -->
+                                <option value="010">010</option>
+                                <option value="011">011</option>
+                                <option value="012">012</option>
+                                <option value="019">016</option>
+                                <option value="017">017</option>
+                                <option value="018">018</option>
+                                <option value="019">019</option>
+                            </select></div>
+                            <div class="hyphen">-</div>
+                            <div class="inputBox"><input id="numMobile01"  type="text" maxlength="4" required="" numberOnly/></div>
+                            <div class="hyphen">-</div>
+                            <div class="inputBox"><input id="numMobile02" type="text" maxlength="4" required="" numberOnly/></div>
+                        </div>
+                        <div class="formBox formPhone">
+                            <div class="title">전화번호</div>
+                            <div class="inputBox" style="border: 1px solid #ddd;"><select id="selPhone" name="phoneN">
+                                <!-- <option value="">선택해주세요</option> -->
+                                <option value="02">02</option>
+                                <option value="031">031</option>
+                                <option value="032">032</option>
+                                <option value="033">033</option>
+                                <option value="041">041</option>
+                                <option value="042">042</option>
+                                <option value="043">043</option>
+                                <option value="051">051</option>
+                                <option value="052">052</option>
+                                <option value="053">053</option>
+                                <option value="054">054</option>
+                                <option value="055">055</option>
+                                <option value="061">061</option>
+                                <option value="062">062</option>
+                                <option value="064">064</option>
+                                <option value="070">070</option>
+                                <option value="080">080</option>
+                            </select></div>
+                            <div class="hyphen">-</div>
+                            <div class="inputBox"><input id="numPhone01" type="text" maxlength="4" numberOnly/></div>
+                            <div class="hyphen">-</div>
+                            <div class="inputBox"><input id="numPhone02" type="text" maxlength="4" numberOnly/></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="recomTxt">추천인이 입력하신 후보자 정보는 후보자가 최종 승인하지 않을 경우, 등록한 내용은 자동 삭제되며 삭제 사실은 추천인이 입력하신 메일로 발송됩니다.</div>
+            <div class="pinkBtn"><a href="#">추천하기</a></div>
+        </div>
+    </div>
+</section>
+
+<% include ../include/footer %>
+
+    <div id="popbg" class="popbg"></div>
+    <div id="popup" class="alertPop complete">
+        <div class="title">등록완료<img src="../img/icon_closeW.png" alt="닫기버튼"></div>
+        <div class="popBox">
+            <p class="text">후보자 추천이 완료되었습니다.<br>관리자 승인 후 후보목록에 등록됩니다.<br>감사합니다.</p>
+            <div class="btn_right">
+                <a href="#" class="close_xrp btn_pink" id="btn_close">닫기</a>
+            </div>
+        </div>
+    </div>
+    <div id="popbg" class="popbg"></div>
+    <div id="popup" class="errorPop complete">
+        <div class="title">에러발생<img src="../img/icon_closeW.png" alt="닫기버튼"></div>
+        <div class="popBox">
+            <p class="text">에러가 발생하였습니다.<br>다시 입력 해주세요.<br>감사합니다.</p>
+            <div class="btn_right">
+                <a href="#" class="close_xrp btn_pink" id="btn_close">닫기</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $("input:text[numberOnly]").on("keyup", function() {
+        $(this).val($(this).val().replace(/[^0-9]/g,""));
+    });
+
+// 후보등록 -> DB INSERT 코드
+    $(document).ready(function(){
+
+       // photo change 이미지 업로드
+        $("#photo1, #photo2, #photo3, #photo4").change(function (e) {
+            e.preventDefault();
+            var file = this.files[0];
+            var form = new FormData();
+            var reg = /(.jpg|.gif|.png)$/;
+            var form_idx = e.target.id.slice(-1);
+
+            if (!reg.test(file.name)) {
+                alert('파일형식은 jpg, gif, png 만 지원합니다.' + file);
+                $("#" + e.target.id).val("");
+                return false;
+            }
+
+            if (file.size > 1024 * 1024 * 10) {
+                alert('파일크기는 10MB 이하입니다.');
+                $("#" + e.target.id).val("");
+                return false;
+            }
+
+            form.append('image', file);
+
+            $.ajax({
+                url: '/ajax/imgupload',
+                method: 'POST',
+                processData: false,
+                contentType: false,
+                data: form,
+                success: function (data) {
+                    var json = $.parseJSON(JSON.stringify(data));
+                    if (json.status === true) {
+                        $("#photokey" + form_idx).val(json.imgkey);
+                    } else {
+                        $("#" + e.target.id).val("");
+                       // alert("에러가 발생했습니다.");
+                   PopupError(data.messages);
+                    console.log("ajax로 데이터는 가져왔으나 에러");
+                    }
+                },
+                error: function (xhr, status, errorThrown) {
+                   // alert("통신에러가 발생했습니다.");
+                   PopupError("통신에러" + xhr.responseText);
+                   console.log("아예 ajax로 데이터를 가져오지 못함.");
+                }
+            }); // end of ajax
+        }); // end of photo change
+
+        // 중복 클릭 방지
+        $('.pinkBtn1 a').off("click").on('click', function (e) {
+            e.preventDefault();
+            var input_error     = false,
+                input_focus     = undefined,
+                bjNameVal       = $('#bjName').val(),
+                bjContents      = $('#selCastContent').val(),
+                Hashtag         = $("#txtHashtag").val(),
+
+                bjEmailId       = $("#txtBjId").val(),
+                bjEmailAddr     = $("#txtBjEmail").val(),
+                bjIntroduce     = $("#txtBjInfo").val(),
+
+                photokey1       = $('#photokey1').val(),
+                photokey2       = $('#photokey2').val(),
+                photokey3       = $('#photokey3').val(),
+                photokey4       = $('#photokey4').val(),
+
+                photo1_src      = $('#photo1_src').val(),
+                photo2_src      = $('#photo2_src').val(),
+                photo3_src      = $('#photo3_src').val(),
+                photo4_src      = $('#photo4_src').val(),
+
+                subChnl01       = $('#txtUrlChnl01').val(),
+                subChnl02       = $('#txtUrlChnl02').val(),
+                subChnl03       = $('#txtUrlChnl03').val(),
+
+                fanclub         = $('#txtUrlFan').val(),
+
+                video01         = $('#txtUrlBest01').val(),
+                video02         = $('#txtUrlBest02').val(),
+
+                userNameValue   = $("#userName").val(),
+                userEmailH      = $("#txtUserId").val(),
+                userEmailT      = $("#txtComEmail").val(),
+                userMobH        = $('#selMobile').val(),
+                userMobB        = $('#numMobile01').val(),
+                userMobT        = $('#numMobile02').val(),
+                userPhoneH        = $('#selPhone').val(),
+                userPhoneB        = $('#numPhone01').val(),
+                userPhoneT        = $('#numPhone02').val();
+
+            var bjEmail = bjEmailId + '@' + bjEmailAddr;
+            var userEmail = userEmailH + '@' + userEmailT;
+            var userMPhone = userMobH + userMobB + userMobT;
+            var userPhone = userPhoneH + userPhoneB + userPhoneT;
+            // focus 이동으로 인하여 역순으로 기입
+
+
+            //TODO : 사용자 집전화번호 검증 추가
+
+
+
+            // 값 유무
+            if (!userMobB || !userMobT) {
+                input_error = "폰에러";
+                input_focus = "#selMobile"
+            }
+            // 값 유무
+            if (!userEmailH ||!userEmailT) {
+                input_error = "메일에러";
+                input_focus = "#txtUserId"
+            }
+            // 값 유무
+            if (!userEmailH ||!userEmailT) {
+                input_error = "메일에러";
+                input_focus = "#txtUserId"
+            }
+            // 제약조건
+            if (2 > userNameValue.length || userNameValue.length > 20
+                || !/^[ㄱ-ㅎ|가-힣|a-z|A-Z|\-\_]+$/.test(userNameValue)) {
+                input_error = "추천인에러";
+                input_focus = "#userName"
+            }
+            // 값 유무
+            if ( !video02 ) {
+                input_error = "인기영상2";
+                input_focus = "#txtUrlBest02"
+            }
+            // 값 유무
+            if ( !video01 ) {
+                input_error = "인기영상1";
+                input_focus = "#txtUrlBest01"
+            }
+            // 값 유무
+            if ( !subChnl01 ) {
+                input_error = "방송채널1";
+                input_focus = "#txtUrlChnl01"
+            }
+            if ( !subChnl02 ) {
+                input_error = "방송채널2";
+                input_focus = "#txtUrlChnl02"
+            }
+            if ( !subChnl03 ) {
+                input_error = "방송채널3";
+                input_focus = "#txtUrlChnl03"
+            }
+//            이미지 쪽 너무 복잡함...
+            // 값 유무
+            if ( !photo2_src ) {
+                input_error = "서브1이미지출처";
+                input_focus = "#photo2_src"
+            }
+            // 값 유무
+            if ( !photo1_src ) {
+                input_error = "대표이미지출처";
+                input_focus = "#photo1_src"
+            }
+            // 값 유무
+            if ( !photokey2 ) {
+                input_error = "대표이미지출처";
+                input_focus = "#photo1_src"
+            }
+            if (photokey3.length > 1 && photo3_src.length < 3) {
+                input_error = "서브2 사진 출처를 기입해 주세요.";
+                input_focus = '#photo3_src';
+            }
+            if (photokey2.length > 1 && photo2_src.length < 3) {
+                input_error = "서브1 사진 출처를 기입해 주세요.";
+                input_focus = '#photo2_src';
+            }
+            if (photo1_src.length < 3) {
+                input_error = "메인 사진 출처를 기입해 주세요.";
+                input_focus = '#photo1_src';
+            }
+            // 값 유무
+            if ( !Hashtag ) {
+                input_error = "방송컨텐츠 chk ";
+                input_focus = "#txtHashtag"
+            }
+            // 값 유무
+            if ( !bjContents) {
+                input_error = "활동영역 chk";
+                input_focus = "#selCastContent"
+            }
+            // 값 유무
+            if ( !bjNameVal ) {
+                input_error = "bj 이름  chk";
+                input_focus = "#bjName"
+            }
+            // 값 유무
+            if (input_error) {
+                alert(input_error);
+                $(input_focus).focus();
+                return;
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/ajax/newbj",
+                    crossDomain: false,
+                    contentType: "application/json",
+                    processData: false,
+                    dataType: "json",
+                    data: JSON.stringify({
+                        bj_name: bjNameVal,
+                        bj_contents:Hashtag,
+                        bj_active_area:bjContents,
+                        bjEmail:bjEmail,
+                        introduce: bjIntroduce,
+                        photokey1: photokey1,
+                        photokey2: photokey2,
+                        photokey3: photokey3,
+                        photokey4: photokey4,
+                        photo1_src: photo1_src,
+                        photo2_src: photo2_src,
+                        photo3_src: photo3_src,
+                        photo4_src: photo4_src,
+                        channel1:subChnl01,
+                        channel2:subChnl02,
+                        channel3:subChnl03,
+                        fanclub:fanclub,
+                        video1:video01,
+                        video2:video02,
+                        recommender:userNameValue,
+                        userEmail:userEmail,
+                        userMPhone:userMPhone,
+                        userPhone:userPhone
+                    }),
+                    success: function (data) {
+                        var result = $.parseJSON(JSON.stringify(data))
+
+                        if (result.status === true) {
+                            $('html, body').css({'overflow': 'hidden', 'height': '100%'});
+                            // $('#element').on('scroll touchmove mousewheel', function (event) {
+                            // event.preventDefault();
+                            // event.stopPropagation();
+                            // return false;
+                            // });
+                            $(".errorPop").fadeIn();
+                        } else {
+                            PopupError(result.messages);
+                        }
+                    },
+                    error: function (xhr, status, errorThrown) {
+                        PopupError("통신에러:" + xhr.responseText);
+                    }
+                });
+            }
+
+        });
+        // 에스더스크립트
+//        if($(".formBox").hasClass('wrong')){
+//            $('.formBox').removeClass('wrong');
+//        }
+        // 유효성 검사
+        $(document).off("blur", ".inputBox > input, select").on("blur", ".inputBox > input, select", function() {
+            var $this               = $(this);
+            var $this_wrongArea     = $this.parent().parent().find(".title > .wrong");
+            var $this_wrongBorder   = $this.parent().parent();
+            if(!fn_checkValid($this)) {
+                $this_wrongArea.removeClass("hideImport");
+                $this_wrongBorder.addClass("wrong");
+                return false;
+            }
+        });
+    }); // end of $(document).ready(function(){})
+
+
+    function PopupError(text) {
+        console.log("PopupError - " + text);
+        $(".errorPop").fadeIn();
+    }
+
+    $(".alertPop #btn_close").click(function () {
+        $('html, body').css({'overflow': 'visible'});
+        $('#element').off('scroll touchmove mousewheel');
+        $(".alertPop").fadeOut();
+        //  setTimeout("location.href='/logout'; "); 이거 주석무조건 해제!!!
+    });
+
+    $(".errorPop #btn_close").click(function () {
+        $(".errorPop").fadeOut();
+    });
+
+
+     // 유효성 검사
+     var fn_checkValid = function fn_checkValid($this) {
+        var $this_wrongArea     = $this.parent().parent().find(".title > .wrong");
+        var $this_wrongBorder   = $this.parent().parent().find(".formBox");
+        $this_wrongArea.addClass("hideImport");
+        $this_wrongBorder.removeClass("wrong");
+
+        var jsThisAttrId        = $this.attr("id");
+        var $bjName_id          = $("#bjName");
+        var bjNameValue         = $bjName_id.val();
+        var bjNameValueLength   = bjNameValue.length;
+
+        if(jsThisAttrId == "bjName") {
+            if(2 > bjNameValueLength || bjNameValueLength > 20
+                || !/^[ㄱ-ㅎ|가-힣|a-z|A-Z|\-\_]+$/.test(bjNameValue)) {
+                return false;
+            } else {
+                $this.parent().parent().removeClass("wrong")
+            }
+        }
+
+        if(jsThisAttrId == "selCastContent") {
+            if(!$("#selCastContent").val()) {
+                return false;
+            } else {
+                $this.parent().parent().removeClass("wrong")
+            }
+        }
+        /* 에스더 스크립트 */
+
+        /* ----------- // 에스더 스크립트 // ---------------- */
+
+        if(jsThisAttrId == "txtHashtag") {
+            if(!$("#txtHashtag").val()) {
+                return false;
+            } else {
+                $this.parent().parent().removeClass("wrong")
+            }
+        }
+
+        if(jsThisAttrId == "txtBjId" || jsThisAttrId == "txtBjEmail") {
+            if(!$("#txtBjId").val()
+                || (!$("#selBjEmail").val() && !$("#txtBjEmail").val())) {
+                return false;
+            } else {
+                $this.parent().parent().removeClass("wrong")
+            }
+        }
+
+        if(jsThisAttrId == "txtUrlChnl01") {
+            if(!$("#txtUrlChnl01").val()) {
+                return false;
+            } else {
+                $this.parent().parent().removeClass("wrong")
+            }
+        }
+
+        if(jsThisAttrId == "txtUrlBest01") {
+            if(!$("#txtUrlBest01").val()) {
+                return false;
+            } else {
+                $this.parent().parent().removeClass("wrong")
+            }
+        }
+
+        if(jsThisAttrId == "txtUrlBest02") {
+            if(!$("#txtUrlBest02").val()) {
+                return false;
+            } else {
+                $this.parent().parent().removeClass("wrong")
+            }
+        }
+
+        var $userName_id          = $("#userName");
+        var userNameValue         = $userName_id.val();
+        var userNameValueLength   = userNameValue.length;
+
+        if(jsThisAttrId == "userName") {
+            if(2 > userNameValueLength || userNameValueLength > 20
+                || !/^[ㄱ-ㅎ|가-힣|a-z|A-Z|\-\_]+$/.test(userNameValue)) {
+                return false;
+            } else {
+                $this.parent().parent().removeClass("wrong")
+            }
+        }
+
+        if(jsThisAttrId == "txtUserId" || jsThisAttrId == "txtComEmail") {
+            if(!$("#txtUserId").val()
+                || (!$("#selComEmail").val() && !$("#txtComEmail").val())) {
+                return false;
+            } else {
+                $this.parent().parent().removeClass("wrong")
+            }
+        }
+
+        if(jsThisAttrId == "numMobile01" || jsThisAttrId == "numMobile02") {
+            if(!$("#numMobile01").val() || !$("#numMobile02").val()) {
+                return false;
+            } else {
+                $this.parent().parent().removeClass("wrong")
+            }
+        }
+
+        return true;
+    };
+     // 전송하기
+
+</script>
+</html>

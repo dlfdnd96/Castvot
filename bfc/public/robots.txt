@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /ajax/
+Sitemap: https://bfc.castvot.com/sitemap.xml

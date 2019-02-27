@@ -1,0 +1,95 @@
+<% include ./include/header %>
+            <div id="main">
+               <div class="main_top">
+                    <div id="content">
+                       <!-- 국민남친 리스트 -->
+                        <div class="box_list" id="box_list">
+
+                            <% for(var idx = 1; idx <= main_max ; idx++) { %>
+
+                                <div id="box_<%= idx %>" class="ih-item square effect bottom_to_top">
+                                    <a id="link_<%= idx %>" href="#">
+                                        <% if ( idx === 1 ) { %>
+                                            <div class="best"><img src="https://img.castvot.com/img/icon_best.png" alt="best" /></div>
+                                        <% } %>
+                                        <div class="img"><img id="img_<%= idx %>" src="https://img.castvot.com/img/unknown.jpg"></div>
+                                        <div id="info_<%= idx %>" class="info">
+                                            <img src="https://img.castvot.com/img/icon_unknown.png">
+                                            <h4>당신의 국민 남친을<br>칭찬해주세요!</h4>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            <% } %>
+
+                        </div>
+                    </div><!-- content -->
+
+                    <div id="banner_list">
+                            <% include ./include/right_ad %>
+                    </div>
+
+                </div><!-- main_top -->
+            </div><!-- main -->
+
+            <% include ./include/footer %>
+
+        </div> <!-- wrap -->
+    </body>
+    <script>
+
+        function addCommas(nStr) {
+            nStr += '';
+            x = nStr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            }
+            return x1 + x2;
+        }
+
+        function updateData() {
+            $.ajax({
+                type: "GET",
+                url: "/ajax/update_main",
+                crossDomain:false,
+                contentType: "application/json",
+                processData: false,
+                dataType: "json",
+                success:function ( data ) {
+                    var result = $.parseJSON(JSON.stringify(data));
+                    var data = $.parseJSON(result.data);
+                    if(result.status===true){
+                        for (let i = 0; i < data.length; i++) {
+                            //console.log(data[i]);
+                            // $("#link_"+ ( i + 1 ) ).attr("href","/boys/"+data[i].boyid);
+                            $("#img_"+ ( i + 1 ) ).attr("src","https://img.castvot.com/files/bfc/"+String(data[i].photo)+"-small.jpg");
+                            $("#info_"+ ( i + 1 ) )
+                                .html("<h2>" + ( i + 1 ) + "위</h2><h3>"+data[i].name+"</h3><p><img src=\"https://img.castvot.com/img/icon_rp.png\">"+ ( parseInt( data[i].total * 1000 )/1000 )+"</p>");
+                                if (i == 0) {
+                                    $("#info_"+ ( i + 1 ) ).find('h2').addClass('best1')
+                                }
+                        }
+                        $("#link_1").attr("href","/notice/7");
+                        // TODO: 칸이 줄었을 경우 제거해주는거...main_max - i
+                    } else { // 데이터 에러
+                        //console.log(result.message);
+                    }
+                },
+                error: function (xhr, status, errorThrown) {
+                    //console.log("통신에러:"+xhr.responseText);
+                }
+            }); // end ajax
+
+        }
+
+        $(document).ready(function () {
+            $("#box_list").show();
+            updateData(); // 첫번째 업데이트
+            setInterval(updateData, 5000);
+        });
+
+    </script>
+</html>

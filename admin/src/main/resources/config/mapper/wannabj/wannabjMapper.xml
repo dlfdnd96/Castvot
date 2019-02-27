@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.castvot.admin.mapper.wannabj.WannabjMapper">
+    <insert id="insertWannabjAccount">
+
+        INSERT INTO bjc_coin (bj_pk, coin_type, account, secret) VALUES (
+            #{bjPk}, #{coinType}, #{account}, #{secret}
+        )
+
+    </insert>
+
+    <update id="updateWannabjStatus">
+
+        UPDATE bjc_bjs SET status = #{status}, mdate = NOW() WHERE pk = #{pk}
+
+    </update>
+
+    <update id="updateWannabjAccount">
+
+        UPDATE bjc_bjs
+        SET
+            xrp_account = #{xrpAccount},
+            qtum_account = #{qtumAccount}
+        WHERE pk = #{pk}
+
+    </update>
+
+    <select id="selectWannabjList" resultType="com.castvot.admin.vo.wannabj.WannabjVO">
+
+        SELECT
+            bb.*,
+            bau.user_name
+        FROM bjc_bjs bb
+        JOIN bjc_passport_user bau
+        ON bb.user_pk = bau.pk
+        WHERE 1 = 1
+        <if test="searchValue != null and !searchValue.equals('')">
+            <if test="searchType != null and searchType.equals('BJ_NAME')">
+                AND bb.bj_name LIKE CONCAT( '%', '${searchValue}' ,'%' )
+            </if>
+            <if test="searchType != null and searchType.equals('REC_NAME')">
+                AND bb.rec_name LIKE CONCAT( '%', '${searchValue}' ,'%' )
+            </if>
+        </if>
+        AND del_yn = FALSE
+        <if test="statusType != null and !statusType.equals('')">
+            AND bb.status = #{statusType}
+        </if>
+
+        <choose>
+            <when test="sortType != null and sortType.equals('ASC')">
+                ORDER BY cdate ASC
+            </when>
+            <otherwise>
+                ORDER BY cdate DESC
+            </otherwise>
+        </choose>
+        LIMIT
+            ${pageIndex}, ${pageSize}
+
+    </select>
+
+    <select id="selectWannabjCnt" resultType="java.lang.Integer">
+
+        SELECT
+            COUNT(1)
+        FROM bjc_bjs bb
+        JOIN bjc_passport_user bau
+        ON bb.user_pk = bau.pk
+        WHERE 1 = 1
+        <if test="searchValue != null and !searchValue.equals('')">
+            <if test="searchType != null and searchType.equals('BJ_NAME')">
+                AND bb.bj_name LIKE CONCAT( '%', '${searchValue}' ,'%' )
+            </if>
+            <if test="searchType != null and searchType.equals('REC_NAME')">
+                AND bb.rec_name LIKE CONCAT( '%', '${searchValue}' ,'%' )
+            </if>
+        </if>
+        <if test="statusType != null and !statusType.equals('')">
+            AND bb.status = #{statusType}
+        </if>
+        AND del_yn = FALSE
+
+
+    </select>
+
+    <select id="selectWannabj" resultType="com.castvot.admin.vo.wannabj.WannabjVO">
+
+        SELECT
+            bb.*,
+            bau.user_name
+        FROM bjc_bjs bb
+        JOIN bjc_passport_user bau
+        ON bb.user_pk = bau.pk
+        WHERE bb.pk = #{pk}
+
+    </select>
+
+    <select id="selectWannabjCoinAccount" resultType="com.castvot.admin.vo.wannabj.WannabjCoinAccountVO">
+
+        SELECT * FROM bjc_coin WHERE bj_pk = #{pk} AND coin_type = #{coinType}
+
+    </select>
+    <select id="selectWannabjCoinsAccount" resultType="com.castvot.admin.vo.wannabj.WannabjCoinAccountVO">
+
+        SELECT * FROM bjc_coin WHERE bj_pk = #{pk};
+
+    </select>
+
+    <update id="deleteWannabj">
+
+        UPDATE bjc_bjs SET del_yn = true, status = 'REJECT' WHERE pk IN
+        (
+        <foreach collection="pks" separator="," item="pk">
+            #{pk}
+        </foreach>
+        )
+
+    </update>
+    <update id="updateWannabj">
+        UPDATE bjc_bjs SET
+            bj_name = #{bjName},
+            bj_contents = #{bjContents},
+            bj_active_area = #{bjActiveArea},
+            bj_email = #{bjEmail},
+            bj_introduce = #{bjIntroduce},
+            <if test="bj_photoName1 != null">
+                bj_photo1 = #{bjPhotoName1},
+            </if>
+            <if test="bj_photoName2 != null">
+                bj_photo2 = #{bjPhotoName2},
+            </if>
+            <if test="bj_photoName3 != null">
+                bj_photo3 = #{bjPhotoName3},
+            </if>
+            <if test="bj_photoName4 != null">
+                bj_photo4 = #{bjPhotoName4},
+            </if>
+            bj_channel1 = #{bjChannel1},
+            <if test="bj_channel2 != null">
+                bj_channel2 = #{bjChannel2},
+            </if>
+            <if test="bj_channel3 != null">
+                bj_channel3 = #{bjChannel3},
+            </if>
+            bj_fanclub = #{bjFanclub},
+            <if test="bj_hot_video_src1 != null">
+                bj_hot_video_src1 = #{bjHotVideo1},
+            </if>
+            <if test="bj_hot_video_src2 != null">
+                bj_hot_video_src2 = #{bjHotVideo2},
+            </if>
+            <if test="rec_name != null">
+                rec_name = #{recName},
+            </if>
+            <if test="rec_email != null">
+                rec_email = #{recEmail},
+            </if>
+            <if test="rec_contact_num1 != null">
+                rec_contact_num1 = #{recContactNum1},
+            </if>
+            <if test="rec_contact_num2 != null">
+                rec_contact_num1 = #{recContactNum2},
+            </if>
+        WHERE pk = #{pk}
+    </update>
+
+</mapper>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>워너STAR::preparing</title>
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <script src="./js/jquery-2.1.1.min.js"></script>
+    <script src="./js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        // 위로 가기
+        $(window).scroll(function() {
+            var windowT = $(window).scrollTop();
+            if(windowT == 0) {
+                $('.moveTop').stop().animate({'bottom':'-100px', 'opacity':'0'},300);
+            }
+            else {
+                $('.moveTop').stop().animate({'bottom':'50px', 'opacity':'1'},300);
+            }
+        });
+        $('.moveTop').click(function() {
+            $('.moveTop').stop().animate({'bottom':'-100px', 'opacity':'0'},300);
+            $('html').stop().animate({'scrollTop':'0'},500);
+        });
+        $('.moreBtn').mouseenter(function() {
+            $(this).find('.bg').stop().animate({'width':'0'},180).animate({'width':'100%'},150);
+        });
+
+        // 반응형일 때 햄버거 메뉴
+        $('.navbar').click(function() {
+            $this = $(this);
+            $this.toggleClass('after');
+            $this.toggleClass('on');
+            $this.css('position','fixed');
+
+            if($(this).hasClass('after')) {
+                $('header nav').show().stop().animate({'right':'0'},300);
+                $('header .search').show().stop().animate({'right':'0'},300);
+
+                $('#bg').delay(200).show();
+
+                // 스크롤 막기
+                $('html, body').on('scroll touchmove mousewheel', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                });
+
+                $('#bg').click(function() {
+                    $this.removeClass('after','on');
+                    $('header nav').fadeOut().stop().animate({'right':'-80%'},100);
+                    $('header .search').fadeOut().stop().animate({'right':'-80%'},100);
+
+                    $('#bg').delay(200).hide();
+
+                    // 스크롤 다시 허용
+                    $('html, body').off('scroll touchmove mousewheel');
+                });
+            }
+            else {
+                $('header nav').fadeOut().stop().animate({'right':'-80%'},100);
+                $('header .search').fadeOut().stop().animate({'right':'-80%'},100);
+
+                $('#bg').delay(200).hide();
+
+                // 스크롤 다시 허용
+                $('html, body').off('scroll touchmove mousewheel');
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+<div id="wrap">
+    <div class="navbar">
+        <a href="#">
+            <span class="bar-1"></span>
+            <span class="bar-2"></span>
+            <span class="bar-3"></span>
+        </a>
+    </div>
+    <header>
+        <div class="logo" onclick="location.href='main.ejs';"><img src="./img/logo.png" alt="logo" /></div>
+        <div class="search">
+            <div><img src="./img/search.png" alt="search"></div>
+            <div><input type="text" placeholder="여기에서 검색해보세요!"/></div>
+        </div>
+        <div id="bg" class="bg"></div>
+        <nav>
+            <ul>
+                <li onclick="location.href='main.ejs';">홈</li>
+                <li onclick="location.href='./bjlist/bjlist.html';">BJ보기</li>
+                <li onclick="location.href='./newbj/newbj_form.html';">추천하기</li>
+                <li onclick="location.href='./notice/list.html';">공지사항</li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="noticeES">
+        <div class="sub_content">
+            <p class="m_size"><img src="./img/serviceReady.png" / alt="준비중페이지"></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="fBox">
+            <div class="footimg" title="회사소개 go" onclick="location.href='support/company.html';">
+                <img src="img/footerLogo.png" alt="회사소개 go">
+            </div>
+            <div class="fBox ftop">
+                    <div class="fLogo">
+                        <ul>
+                            <li onclick="location.href='support/company.html';">회사소개</li>
+                            <li onclick="location.href='support/policy.html';">이용안내</li>
+                            <li onclick="location.href='support/privacy.html';">개인정보보호수집이용동의</li>
+                            <li onclick="location.href='support/youth.html';">청소년보호정책</li>
+                            <li onclick="location.href='support/nomail.html';">이메일수집금지정책</li>
+                        </ul>
+                        <div class="snsCom">
+                            <div><a href="https://www.facebook.com/castvot" target="_blank"></a><img src="img/f_facebook.png" alt="페이스북"></div>
+                            <div><a href="https://twitter.com/ohdeang3279" target="_blank"></a><img src="img/f_twitter.png" alt="트위터"></div>
+                            <div><a href="https://www.instagram.com/castvotsolution" target="_blank"></a><img src="img/f_insta.png" alt="인스타그램"></div>
+                        </div>
+                    </div>
+                    <div class="fLogoBox">
+                            <div class="dlbox">
+                                <dl>
+                                    <dt>회사명 : </dt>
+                                    <dd>주식회사 캐스팅보트솔루션</dd>
+                                </dl>
+                                <dl>
+                                    <dt>대표번호 : </dt>
+                                    <dd>852-3469-5353</dd>
+                                </dl>
+                                <dl>
+                                    <dt>회사메일 : </dt>
+                                    <dd>info@castvot.com</dd>
+                                </dl>
+                            </div>
+                            <p>
+                                copyright ⓒ 2018 Casting Vote Solution. All Rights Reserved.
+                            </p>
+                    </div>
+            </div>
+        </div>
+    </footer>
+    <div class="moveTop">↑</div>
+</div>
+</body>
+</html>

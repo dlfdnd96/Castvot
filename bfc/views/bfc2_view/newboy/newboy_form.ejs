@@ -1,0 +1,404 @@
+
+<% include ../include/header %>
+
+<section>
+    <div class="sub_content">
+        <div class="main_txt">후보추천</div>
+        <div style="display:inline-block;">
+            <table class="tg2 left">
+                <tr>
+                    <th>추천인</th>
+                    <td><input type="text" id="recommender" name="recommender" size="30" placeholder="추천인을 입력해주세요."
+                               required=""></td>
+                </tr>
+                <tr>
+                    <th>추천 후보자명</th>
+                    <td><input type="text" id="boy_name" name="boy_name" size="30" placeholder="후보자명을 입력해주세요."
+                               required=""></td>
+                </tr>
+                <tr>
+                    <th>생년월일</th>
+                    <td>
+                        <input id="boy_birth_year" class="center" type="text" size="6" maxlength="4" required="">년&nbsp;&nbsp;
+                        <input id="boy_birth_month" class="center" type="text" size="3" maxlength="2" required="">월&nbsp;&nbsp;
+                        <input id="boy_birth_date" class="center" type="text" size="3" maxlength="2" required="">일
+                    </td>
+                </tr>
+            </table>
+            <table class="tg2 left">
+                <tr>
+                    <th>추천인 이름공개</th>
+                    <td>
+                        <form>
+                            <input type="checkbox" id="public_agree" name="public_agree" value="y" checked="">&nbsp;&nbsp;동의함
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <th>소속사</th>
+                    <td><input type="text" id="boy_management" size="30" required="" placeholder="소속사를 입력해주세요."></td>
+                </tr>
+                <tr>
+                    <th>혈액형</th>
+                    <td>
+                        <select id="boy_blood_type" class="select">
+                            <option selected>A</option>
+                            <option>B</option>
+                            <option>AB</option>
+                            <option>O</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <table class="tg left">
+                <tr>
+                    <th>소개</th>
+                    <td>
+                        <textarea id="reason" name="reason" class="textarea" maxlength="1000"
+                                  placeholder="텍스트를 입력해주세요. (1,000자 이내 가능)" required=""></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><span
+                            class="red">※ 후보자에 대한 허위사실, 비방, 선동, 정치적 발언 등 부적절한 언어 사용 시 등록이 거절될 수도 있습니다.</span></td>
+                </tr>
+                <tr>
+                    <th>이미지 추가</th>
+                    <td><span>! 용량크기는 10MB 이하로 첨부해주세요. 5:3 비율의 사진을 추천합니다.<br/>! 후보자에 대한 부적절한 이미지는 등록이 거절될수도 있습니다.</span>
+
+                        <div>
+                            <div class="unkownimg"><img id="preview1" src="https://img.castvot.com/img/unknown.jpg"/></div>
+                            <div>
+                                메인이미지(필수)
+                                <table class="tg left">
+                                    <tr>
+                                        <th>이미지 첨부</th>
+                                        <td>
+                                            <input type="text" id="fileName1" class="file_input_textbox"
+                                                   readonly="readonly">
+                                            <div class="file_input_div">
+                                                <input type="text" value="파일 선택" class="file_input_button"/>
+                                                <input id="photokey1" name="photokey1" type="hidden" value="">
+                                                <input id="photo1" type="file" class="file_input_hidden"
+                                                       onchange="javascript: document.getElementById('fileName1').value = this.value"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>출처</th>
+                                        <td>
+                                            <input id="photo1_src" type="text" size="40"
+                                                   placeholder="반드시 사진 출처를 입력해주세요." required="">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="unkownimg"><img id="preview2" src="https://img.castvot.com/img/unknown.jpg"/></div>
+                            <div>
+                                서브이미지1
+                                <table class="tg left">
+                                    <tr>
+                                        <th>이미지 첨부</th>
+                                        <td>
+                                            <input type="text" id="fileName2" class="file_input_textbox"
+                                                   readonly="readonly">
+                                            <div class="file_input_div">
+                                                <input type="text" value="파일 선택" class="file_input_button"/>
+                                                <input id="photokey2" name="photokey1" type="hidden" value="">
+                                                <input id="photo2" type="file" class="file_input_hidden"
+                                                       onchange="javascript: document.getElementById('fileName2').value = this.value"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>출처</th>
+                                        <td>
+                                            <input id="photo2_src" type="text" size="40"
+                                                   placeholder="반드시 사진 출처를 입력해주세요." required="">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="unkownimg"><img id="preview3" src="https://img.castvot.com/img/unknown.jpg"/></div>
+                            <div>
+                                서브이미지2
+                                <table class="tg left">
+                                    <tr>
+                                        <th>이미지 첨부</th>
+                                        <td>
+                                            <input type="text" id="fileName3" class="file_input_textbox"
+                                                   readonly="readonly">
+                                            <div class="file_input_div">
+                                                <input type="text" value="파일 선택" class="file_input_button"/>
+                                                <input id="photokey3" name="photokey1" type="hidden" value="">
+                                                <input id="photo3" type="file" class="file_input_hidden"
+                                                       onchange="javascript: document.getElementById('fileName3').value = this.value"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>출처</th>
+                                        <td>
+                                            <input id="photo3_src" type="text" size="40"
+                                                   placeholder="반드시 사진 출처를 입력해주세요." required="">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class=btn_right>
+            <a href="#" class="button btn_blue btn_newboy" id="btn_newboy_id">등록하기</a>
+            <a href="#" class="button" id="btn_cancel">취소하기</a>
+        </div>
+    </div>
+</section>
+<div class="newboy_finish_popup newboy_finpop">
+    <div>
+        <img src="https://img.castvot.com/img/icon_check.png" alt="">
+        <p><b>후보자 추천이 완료</b> 되었습니다.<br>관리자 확인 후 게시됩니다.<br></p>
+        <a href="#" class="button btn_blue btn_close_finpop">확인</a></li>
+    </div>
+</div>
+
+<div class="newboy_finish_popup newboy_error_popup">
+    <div>
+        <img src="https://img.castvot.com/img/icon_check.png" alt="">
+        <p><b>에러가 발생하였습니다.</b><br><span></span></p>
+        <p><b>사진을 다시 넣어주세요.</b></p>
+        <a href="#" class="button btn_blue btn_close_errpop">확인</a>
+    </div>
+</div>
+
+<% include ../include/footer %>
+
+<script>
+    // 후보등록 -> DB Insert 코드
+    $(document).ready(function () {
+
+        $(".newboy_error_popup").hide();
+
+        $("#photo1, #photo2, #photo3").change(function (e) {
+            e.preventDefault();
+            var file = this.files[0];
+            var form = new FormData();
+            var reg = /(.jpg|.gif|.png)$/;
+            var form_idx = e.target.id.slice(-1);
+
+            if (!reg.test(file.name)) {
+                alert('파일형식은 jpg, gif, png 만 지원합니다.' + file);
+                $("#" + e.target.id).val("");
+                return false;
+            }
+
+            if (file.size > 1024 * 1024 * 10) {
+                alert('파일크기는 10MB 이하입니다.');
+                $("#" + e.target.id).val("");
+                return false;
+            }
+
+            form.append('image', file);
+
+            $.ajax({
+                url: '/ajax/imgupload',
+                method: 'POST',
+                processData: false,
+                contentType: false,
+                data: form,
+                success: function (data) {
+                    var json = $.parseJSON(JSON.stringify(data));
+                    if (json.status === true) {
+                        $("#preview" + form_idx).attr('src', "https://img.castvot.com/files/bfc/" + json.imgkey + "-small.jpg");
+                        $("#photokey" + form_idx).val(json.imgkey);
+                    } else {
+                        $("#" + e.target.id).val("");
+                        PopupError(data.messages);
+                    }
+                },
+                error: function (xhr, status, errorThrown) {
+                    PopupError("통신에러:" + xhr.responseText)
+                }
+            });
+        });
+        // 중복 클릭 방지
+        $('#btn_newboy_id').off("click").on('click', function (e) {
+            e.preventDefault();
+            var input_error = false;
+            var input_focus = undefined;
+            var recommender = $("#recommender").val();
+            var boy_name = $('#boy_name').val();
+            var boy_management = $("#boy_management").val();
+            var boy_birth_year = $("#boy_birth_year").val();
+            var boy_birth_month = $("#boy_birth_month").val();
+            var boy_birth_date = $("#boy_birth_date").val();
+            var boy_blood_type = $("#boy_blood_type").val();
+            // var boy_sns = $('#uploader_sns').val();
+            var boy_reason = $('#reason').val();
+            var photokey1 = $('#photokey1').val();
+            var photokey2 = $('#photokey2').val();
+            var photokey3 = $('#photokey3').val();
+            var photo1_src = $('#photo1_src').val();
+            var photo2_src = $('#photo2_src').val();
+            var photo3_src = $('#photo3_src').val();
+
+            if(!Number(boy_birth_year)) {
+                input_error = "숫자만 입력해주세요.";
+                input_focus = '#boy_birth_year';
+            }
+
+            if(!Number(boy_birth_month)) {
+                input_error = "숫자만 입력해주세요.";
+                input_focus = '#boy_birth_month';
+            }
+
+            if(!Number(boy_birth_date) ) {
+                input_error = "숫자만 입력해주세요.";
+                input_focus = '#boy_birth_date';
+            }
+
+            // focus 이동으로 인하여 역순으로 기입
+            if (photokey3.length > 1 && photo3_src.length < 3) {
+                input_error = "서브2 사진 출처를 기입해 주세요.";
+                input_focus = '#photo3_src';
+            }
+            if (photokey2.length > 1 && photo2_src.length < 3) {
+                input_error = "서브1 사진 출처를 기입해 주세요.";
+                input_focus = '#photo2_src';
+            }
+            if (photo1_src.length < 3) {
+                input_error = "메인 사진 출처를 기입해 주세요.";
+                input_focus = '#photo1_src';
+            }
+            if (photokey1.length < 1) {
+                input_error = "메인 사진을 등록해주세요.";
+                input_focus = '#photo1';
+            }
+            if (boy_reason.length < 10) {
+                input_error = "후보자 추천 사유를 10글자 이상 입력해 주세요.";
+                input_focus = '#reason';
+            }
+
+            if (boy_birth_date < 1 || boy_birth_date > 31) {
+                input_error = "후보자 출생일을 확인해주세요.";
+                input_focus = '#boy_birth_date';
+            } else if((boy_birth_month == 4 || boy_birth_month == 6 || boy_birth_month == 9 || boy_birth_month == 11) && boy_birth_date == 31){
+                input_error = "후보자 출생일을 확인해주세요.";
+                input_focus = '#boy_birth_date';
+            } else if(boy_birth_month == 2 && boy_birth_date > 29){
+                input_error = "후보자 출생일을 확인해주세요.";
+                input_focus = '#boy_birth_date';
+            } else if(!(boy_birth_year % 400 == 0 || (boy_birth_year % 100 != 0 && boy_birth_year % 4 == 0)) && boy_birth_date == 29 && boy_birth_month == 2){
+                input_error = "후보자 출생일을 확인해주세요.";
+                input_focus = '#boy_birth_date';
+            }
+
+            if (boy_birth_month < 1 || boy_birth_month > 12) {
+                input_error = "후보자 출생월 확인해주세요.";
+                input_focus = '#boy_birth_month';
+            }
+            if (boy_birth_year < 1900 || boy_birth_year > 2018) {
+                input_error = "후보자 출생년도를 확인해주세요.";
+                input_focus = '#boy_birth_year';
+            }
+            if (boy_management.length < 2) {
+                input_error = "후보자 소속사를 입력해 주세요.";
+                input_focus = '#boy_management';
+            }
+            if (boy_name.length < 2) {
+                input_error = "추천 후보자명은 2글자 이상 입력하여야 합니다.";
+                input_focus = '#boy_name';
+            }
+            if (recommender.length < 2) {
+                input_error = "추천인은 2글자 이상 입력하여야 합니다.";
+                input_focus = '#recommender';
+            }
+
+
+            if (input_error) {
+                alert(input_error);
+                $(input_focus).focus();
+                return;
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/ajax/newboy2",
+                    crossDomain: false,
+                    contentType: "application/json",
+                    processData: false,
+                    dataType: "json",
+                    data: JSON.stringify({
+                        boy_name: boy_name,
+                        recommender: recommender,
+                        boy_management: boy_management,
+                        boy_birth_year: boy_birth_year,
+                        boy_birth_month: boy_birth_month,
+                        boy_birth_date: boy_birth_date,
+                        boy_blood_type: boy_blood_type,
+                        reason: boy_reason,
+                        public_agree: $('#public_agree').prop('checked'),
+                        photokey1: photokey1,
+                        photokey2: photokey2,
+                        photokey3: photokey3,
+                        photo1_src: photo1_src,
+                        photo2_src: photo2_src,
+                        photo3_src: photo3_src,
+                    }),
+                    success: function (data) {
+                        var result = $.parseJSON(JSON.stringify(data))
+
+                        if (result.status === true) {
+                            $('html, body').css({'overflow': 'hidden', 'height': '100%'});
+                            // $('#element').on('scroll touchmove mousewheel', function (event) {
+                            // event.preventDefault();
+                            // event.stopPropagation();
+                            // return false;
+                            // });
+                            $(".newboy_finpop").fadeIn();
+                        } else {
+                            PopupError(result.messages);
+                        }
+                    },
+                    error: function (xhr, status, errorThrown) {
+                        PopupError("통신에러:" + xhr.responseText);
+                    }
+                });
+            }
+
+        });
+
+        function PopupError(text) {
+            console.log("PopupError - " + text);
+            $(".newboy_error_popup").fadeIn();
+        }
+
+        $(".btn_close_finpop").click(function () {
+            $('html, body').css({'overflow': 'visible'});
+            $('#element').off('scroll touchmove mousewheel');
+            $(".newboy_finpop").fadeOut();
+            setTimeout("location.href='/logout2'; ");
+        });
+
+        $(".btn_close_errpop").click(function () {
+            $(".newboy_error_popup").fadeOut();
+        });
+
+        $("#btn_cancel").click(function(){
+            setTimeout("location.href='/logout2'; ");
+        });
+
+    });
+
+</script>
+
+
+
+</div> <!-- end of id="wrap" -->
+</body>
+</html>

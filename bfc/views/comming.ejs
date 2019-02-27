@@ -1,0 +1,28 @@
+<% var title = '준비중'; %>
+<% include ./include/header %>
+            
+            <div id="sub">
+               <div class="sub_top">
+                    <div id="content" class="sub_content_bg">
+                        <div class="error">
+                            <img src="https://img.castvot.com/img/commingsoon.png" alt="준비중" style="width: 100%; ">
+                            <p class="error_txt" style=" width: 100%; height: 80px; text-align: center; position: absolute; top: 55%; left: 0; line-height: 28px;  font-size: 18px;">
+                                <%= text %>
+                            </p>
+                        </div>
+                        
+                    </div><!-- content -->
+                                     
+                    <!-- 배너 5개 -->
+                    <div id="banner_list">
+                            <% include ./include/right_ad %>
+                    </div>  
+                
+                </div><!-- main_top -->
+            </div><!-- main -->
+                
+            <% include ./include/footer %>
+
+        </div> <!-- wrap -->
+    </body>
+</html>

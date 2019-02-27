@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.castvot.admin.mapper.candidate.CandidateMapper">
+    <insert id="insertAccount">
+
+        INSERT INTO sc3_bfc_coin (boy_pk, coin_type, account, secret) VALUES (
+            #{boyPk}, #{coinType}, #{account}, #{secret}
+        )
+
+    </insert>
+
+    <update id="updateStatus">
+
+        UPDATE bfc_boys SET status = #{status}, mdate = NOW() WHERE pk = #{pk} AND bfc_season_number = #{bfcSeasonNumber}
+
+    </update>
+
+    <update id="updateAccount">
+
+        UPDATE bfc_boys
+        SET
+            xrp_account = #{xrpAccount},
+            qtum_account = #{qtumAccount}
+        WHERE pk = #{pk}
+        AND bfc_season_number = #{bfcSeasonNumber}
+
+    </update>
+
+    <select id="selectCandidateList" resultType="com.castvot.admin.vo.candidate.CandidateVO">
+
+        SELECT
+            bb.*,
+            bau.user_name
+        FROM bfc_boys bb
+        JOIN bfc_passport_user bau
+        ON bb.user_pk = bau.pk
+        WHERE 1 = 1
+        <if test="searchValue != null and !searchValue.equals('')">
+            <if test="searchType != null and searchType.equals('BOY_NAME')">
+                AND bb.boy_name LIKE CONCAT( '%', '${searchValue}' ,'%' )
+            </if>
+            <if test="searchType != null and searchType.equals('USER_NAME')">
+                AND bb.recommender LIKE CONCAT( '%', '${searchValue}' ,'%' )
+            </if>
+        </if>
+        AND del_yn = FALSE
+        <if test="statusType != null and !statusType.equals('')">
+            AND bb.status = #{statusType}
+        </if>
+        AND bb.bfc_season_number = #{bfcSeasonNumber}
+        <choose>
+            <when test="sortType != null and sortType.equals('ASC')">
+                ORDER BY cdate ASC
+            </when>
+            <otherwise>
+                ORDER BY cdate DESC
+            </otherwise>
+        </choose>
+        LIMIT
+            ${pageIndex}, ${pageSize}
+
+    </select>
+
+    <select id="selectCnadidateCnt" resultType="java.lang.Integer">
+
+        SELECT
+            COUNT(1)
+        FROM bfc_boys bb
+        JOIN bfc_passport_user bau
+        ON bb.user_pk = bau.pk
+        WHERE 1 = 1
+        <if test="searchValue != null and !searchValue.equals('')">
+            <if test="searchType != null and searchType.equals('BOY_NAME')">
+                AND bb.boy_name LIKE CONCAT( '%', '${searchValue}' ,'%' )
+            </if>
+            <if test="searchType != null and searchType.equals('USER_NAME')">
+                AND bb.recommender LIKE CONCAT( '%', '${searchValue}' ,'%' )
+            </if>
+        </if>
+        <if test="statusType != null and !statusType.equals('')">
+            AND bb.status = #{statusType}
+        </if>
+        AND bb.bfc_season_number = #{bfcSeasonNumber}
+        AND del_yn = FALSE
+
+
+    </select>
+
+    <select id="selectCandidate" resultType="com.castvot.admin.vo.candidate.CandidateVO">
+
+        SELECT
+            bb.*,
+            bau.user_name
+        FROM bfc_boys bb
+        JOIN bfc_passport_user bau
+        ON bb.user_pk = bau.pk
+        WHERE bb.pk = #{pk}
+        AND bb.bfc_season_number = #{bfcSeasonNumber}
+
+    </select>
+
+    <select id="selectCoinAccount" resultType="com.castvot.admin.vo.candidate.CoinAccountVO">
+
+        SELECT * FROM sc3_bfc_coin WHERE boy_pk = #{pk} AND coin_type = #{coinType}
+
+    </select>
+    <select id="selectCoinsAccount" resultType="com.castvot.admin.vo.candidate.CoinAccountVO">
+
+        SELECT * FROM sc3_bfc_coin WHERE boy_pk = #{pk};
+
+    </select>
+
+    <update id="deleteBoy">
+
+        UPDATE bfc_boys SET del_yn = true, status = 'REJECT' WHERE pk IN
+        (
+        <foreach collection="pks" separator="," item="pk">
+            #{pk}
+        </foreach>
+        )
+        AND bfc_season_number = #{bfcSeasonNumber}
+
+    </update>
+    <update id="updateCandidate">
+        UPDATE bfc_boys SET
+            boy_name = #{boyName},
+            boy_management = #{boyManagement},
+            boy_birth_year = #{boyBirthYear},
+            boy_birth_month = #{boyBirthMonth},
+            boy_birth_date = #{boyBirthDate},
+            boy_blood_type = #{boyBloodType},
+            <if test="photoName1 != null">
+                photo1 = #{photoName1},
+            </if>
+            <if test="photoName2 != null">
+                photo2 = #{photoName2},
+            </if>
+            <if test="photoName3 != null">
+                photo3 = #{photoName3},
+            </if>
+            reason = #{reason}
+        WHERE pk = #{pk}
+        AND bfc_season_number = #{bfcSeasonNumber}
+    </update>
+
+</mapper>

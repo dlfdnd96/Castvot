@@ -1,0 +1,792 @@
+<% include ../include/header_intro2 %>
+
+<section class="recommendC">
+	<% include ../include/s_visual %>
+
+	<div class="bgBox">
+		<div class="sub_content">
+			<h4>추천하기</h4>
+			<div class="recomBox">
+				<h5><span>●</span>STAR 정보등록</h5>
+				<p style="text-align:right; padding-top: 15px;"><span class="red">*</span> 이 항목은 필수 입력 항목입니다.</p>
+				<div class="pinkBox begieBox">
+					<form>
+						<div class="forms">
+							<div class="formBox">
+								<div class="title"><span class="red">*</span><span>이름(별칭)</span></div>
+								<div class="inputBox"><input id="bjName" type="text" maxlength="20" placeholder="2~20자의 한글, 영문과 특수문자 (-), (_)만 사용가능" required=""></div>
+								<div class="wrong hideImport">2~20자의 한글, 영문, (-,_)인지 체크!</div>
+							</div>
+						</div>
+
+						<div class="forms">
+							<div class="formBox formEmail bjEmail">
+								<div class="title"><span class="select">이메일</span></div>
+								<div class="inputBox"><input id="txtBjId" type="text"/></div>
+								<div class="at">@</div>
+								<!-- <div class="inputBox noTxt" ><input id="txtBjEmail" type="text" style="background: rgb(255, 255, 255);"/></div> -->
+								<div class="inputBox">
+									<select id="selBjEmail" name="email">
+										<option value="">선택</option>
+										<!-- <option value="">직접입력</option> -->
+										<option value="@naver.com">naver.com</option>
+										<option value="@daum.com">daum.net</option>
+										<option value="@nate.com">nate.com</option>
+										<option value="@gmail.com">gmail.com</option>
+										<option value="@hotmail.com">hotmail.com</option>
+										<option value="@yahoo.co.kr">yahoo.co.kr</option>
+										<option value="@empas.com">empas.com</option>
+										<option value="@dreamwiz.com">dreamwiz.com</option>
+										<option value="@korea.com">korea.com</option>
+										<option value="@hanmir.com">hanmir.com</option>
+									</select>
+								</div>
+								<div class="wrong hideImport">입력한 내용이 맞는지 확인해주세요.</div>
+							</div>
+						</div>
+
+						<div class="forms formContent">
+							<div class="formBox">
+								<div class="title"><span class="red">*</span><span>방송콘텐츠</span></div>
+								<div class="inputBox"><input id="txtHashtag" type="text" maxlength="20" placeholder="#쿡방 #코딩 #게임 #뷰티 등 최대20자" required=""/></div>
+								<!-- <div class="wrong hideImport">주소를 맞게 입력했는지 확인해주세요.</div> -->
+							</div>
+
+							<div class="formBox">
+								<div class="title"><span class="red">*</span><span>대표채널</span></div>
+								<div class="inputBox">
+									<select id="selCastContent" name="castContent" required="">
+										<option value="">선택</option>
+										<option value="아프리카tv">아프리카tv</option>
+										<option value="유튜브">유튜브</option>
+										<option value="트위치tv">트위치tv</option>
+										<option value="카카오tv">카카오tv</option>
+										<option value="기타">기타</option>
+									</select>
+								</div>
+								<!-- <div class="wrong hideImport">선택해주세요.</div> -->
+							</div>
+						</div>
+
+						<div class="forms">
+							<div class="formBox formTextA">
+								<div class="title"><span class="red">*</span>STAR 소개</div>
+								<textarea id="txtBjInfo" placeholder="1000자 이하, 특수기호 사용 가능. &#13;&#10;욕설/비하/선동 및 STAR에게 피해를 줄 수 있는 말 또는 법적분쟁이 일어날 소지가 있는 말은 반려될 수 있습니다." maxlength="1000"></textarea>
+								<div class="wrong hideImport">내용을 입력했는지 확인해주세요.</div>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+			<div class="recomBox">
+				<h5><span>●</span>STAR 콘텐츠등록</h5>
+				<div class="pinkBox">
+					<form>
+
+						<div class="forms">
+							<div class="formBox formImage">
+								<div class="title"><span class="red">*</span>대표이미지</div>
+								<div class="fileFind">
+									 <div class="inputBox filebox mImg">
+										 <input type="text" id="fileName1" name="fileName" readonly="readonly" placeholder="권장 사이즈 250 X 250" >
+									 </div>
+									 <div>
+											<label for="photo1">파일찾기</label>
+											<input type="file" id="photo1" name="photo" class="upload-hidden">
+											<input type="hidden" id="photokey1" name="photokey" value="">
+									 </div>
+
+									 <div class="inputBox inputBox2"><input id="photo_src1" type="text" placeholder="출처를 입력해주세요." required=""/></div>
+								</div>
+								<div class="wrong hideImport">파일을 첨부하였는지 확인해주세요.</div>
+							</div>
+						</div>
+
+						<div class="forms">
+							<div class="formBox formImage">
+								<div class="title"><span class="red">*</span>서브이미지<font name="divCount">1</font></div>
+								<div class="fileFind">
+									<div class="inputBox filebox">
+										<input type="text" id="fileName2" name="fileName" readonly="readonly" placeholder="권장 사이즈 460 X 460" >
+									</div>
+									<div>
+										<label for="photo2">파일찾기</label>
+										<input type="file" id="photo2" name="photo" class="upload-hidden">
+										<input type="hidden" id="photokey2" name="photokey" value="">
+										<div class="addBtn">+</div>
+									</div>
+									<div class="inputBox inputBox2"><input type="text" id="photo_src2" name="photo_src" placeholder="출처를 입력해주세요." required=""/></div>
+								</div>
+								<div class="wrong hideImport">파일을 첨부하였는지 확인해주세요.</div>
+							</div>
+						</div>
+
+						<div class="twoDan">
+							<div class="forms">
+								<div class="formBox formChnl">
+									<div class="title"><span class="red">*</span>방송채널<font name="divCount">1</font></div>
+									<div class="inputBox"><input type="text" id="txtUrlChnl1" name="txtUrlChnl" placeholder="ex) 유튜브,트위치,아프리카TV 등 주소(url) 입력" required=""/></div>
+									<div class="addBtn">+</div>
+									<div class="wrong hideImport">주소를 입력했는지 확인해주세요.</div>
+								</div>
+							</div>
+
+							<!-- <div class="forms">
+								<div class="formBox formChnl">
+									<div class="title"><span class="select">방송채널2</span></div>
+									<div class="inputBox"><input id="txtUrlChnl02" type="text" placeholder="ex) 유튜브,트위치,아프리카TV 등 주소(url) 입력"/></div>
+									<div class="removeBtn">-</div>
+								</div>
+							</div>
+							<div class="forms">
+								<div class="formBox formChnl">
+									<div class="title"><span class="select">방송채널3</span></div>
+									<div class="inputBox"><input id="txtUrlChnl03" type="text" placeholder="ex) 유튜브,트위치,아프리카TV 등 주소(url) 입력"/></div>
+									<div class="removeBtn">-</div>
+								</div>
+							</div> -->
+						</div>
+
+						<div class="twoDan">
+								<div class="forms">
+									<div class="formBox">
+										<div class="title"><span class="select">팬클럽</span></div>
+										<div class="inputBox"><input id="txtUrlFan" type="text" placeholder="팬클럽 주소(url)를 입력"/></div>
+									</div>
+								</div>
+								<div class="forms">
+									<div class="formBox">
+										<div class="title"><span class="red">*</span>인기영상1</div>
+										<div class="inputBox"><input id="txtUrlBest01" type="text" placeholder="영상 주소(url) 입력" required=""/></div>
+										<div class="wrong hideImport">주소를 입력했는지 확인해주세요.</div>
+									</div>
+								</div>
+								<div class="forms">
+									<div class="formBox">
+										<div class="title"><span class="red">*</span>인기영상2</div>
+										<div class="inputBox"><input id="txtUrlBest02" type="text" placeholder="영상 주소(url) 입력" required=""/></div>
+										<div class="wrong hideImport">주소를 입력했는지 확인해주세요.</div>
+									</div>
+								</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="recomBox">
+				<h5><span>●</span>추천인 정보등록</h5>
+				<div class="pinkBox begieBox">
+					<form>
+						<div class="forms">
+							<div class="formBox">
+								<div class="title"><span class="red">*</span><span>이름</span></div>
+								<div class="inputBox"><input id="userName" type="text" maxlength="20" placeholder="2~20자의 한글, 영문과 특수문자 (-), (_)만 사용가능" required=""/></div>
+								<div class="wrong hideImport">2~20자의 한글, 영문, (-,_)인지 체크!</div>
+							</div>
+						</div>
+
+						<div class="forms">
+							<div class="formBox formEmail comEmail">
+								<div class="title"><span class="red">*</span><span>이메일</span></div>
+								<div class="inputBox"><input id="txtUserId" type="text" required=""/></div>
+								<div class="at">@</div>
+								<!-- <div class="inputBox noTxt"><input id="txtComEmail" type="text" style="background: rgb(255, 255, 255);" required=""/></div> -->
+								<div class="inputBox">
+									<select id="selComEmail" name="email">
+										<option value="">선택</option>
+										<!-- <option value="">직접입력</option> -->
+										<option value="@naver.com">naver.com</option>
+										<option value="@daum.com">daum.net</option>
+										<option value="@nate.com">nate.com</option>
+										<option value="@gmail.com">gmail.com</option>
+										<option value="@hotmail.com">hotmail.com</option>
+										<option value="@yahoo.co.kr">yahoo.co.kr</option>
+										<option value="@empas.com">empas.com</option>
+										<option value="@dreamwiz.com">dreamwiz.com</option>
+										<option value="@korea.com">korea.com</option>
+										<option value="@hanmir.com">hanmir.com</option>
+									</select>
+								</div>
+								<div class="wrong hideImport">입력한 내용이 맞는지 확인해주세요.</div>
+							</div>
+						</div>
+
+						<div class="forms">
+							<div class="formBox formPhone">
+								<div class="title"><span class="red">*</span><span>연락처</span></div>
+								<div class="inputBox">
+									<select id="selMobile" name="phone">
+									<!-- <option value="">선택해주세요</option> -->
+									<option value="010">010</option>
+									<option value="011">011</option>
+									<option value="012">012</option>
+									<option value="019">016</option>
+									<option value="017">017</option>
+									<option value="018">018</option>
+									<option value="019">019</option>
+									<option value="02">02</option>
+									<option value="031">031</option>
+									<option value="032">032</option>
+									<option value="033">033</option>
+									<option value="041">041</option>
+									<option value="042">042</option>
+									<option value="043">043</option>
+									<option value="051">051</option>
+									<option value="052">052</option>
+									<option value="053">053</option>
+									<option value="054">054</option>
+									<option value="055">055</option>
+									<option value="061">061</option>
+									<option value="062">062</option>
+									<option value="064">064</option>
+									<option value="070">070</option>
+									<option value="080">080</option>
+									</select>
+								</div>
+								<div class="hyphen">-</div>
+								<div class="inputBox"><input id="numMobile01"	type="text" maxlength="4" required="" numberOnly/></div>
+								<div class="hyphen">-</div>
+								<div class="inputBox"><input id="numMobile02" type="text" maxlength="4" required="" numberOnly/></div>
+								<div class="wrong hideImport">입력한 내용이 맞는지 확인해주세요.</div>
+							</div>
+						</div>
+
+						<!-- <div class="forms">
+							<div class="formBox formPhone">
+								<div class="title"><span class="select">전화번호</span></div>
+								<div class="inputBox"><select id="selPhone" name="phoneN">
+									<option value="">선택해주세요</option>
+									<option value="02">02</option>
+									<option value="031">031</option>
+									<option value="032">032</option>
+									<option value="033">033</option>
+									<option value="041">041</option>
+									<option value="042">042</option>
+									<option value="043">043</option>
+									<option value="051">051</option>
+									<option value="052">052</option>
+									<option value="053">053</option>
+									<option value="054">054</option>
+									<option value="055">055</option>
+									<option value="061">061</option>
+									<option value="062">062</option>
+									<option value="064">064</option>
+									<option value="070">070</option>
+									<option value="080">080</option>
+								</select></div>
+								<div class="hyphen">-</div>
+								<div class="inputBox"><input id="numPhone01" type="text" maxlength="4" numberOnly/></div>
+								<div class="hyphen">-</div>
+								<div class="inputBox"><input id="numPhone02" type="text" maxlength="4" numberOnly/></div>
+							</div>
+						</div> -->
+					</form>
+				</div>
+			</div>
+			<div class="giftImg">
+				랜선여친을 추천하면 wanna star에서 문화상품권 10,000원을 쏜다! (선착순100명)<br>
+				<span>*문화상품권은 홈페이지 오픈 후 기프티콘으로 보내드립니다.</span>
+			</div>
+			<div class="recomTxt">워너STAR 초상권 제공 관련 문의는 <a href="mailto:info@castvot.com"> info@castvot.com </a> 혹은 <a href="tel:0220157634"> 02) 2015-7634 </a>로 하실 수 있습니다.</div>
+			<div class="pinkBtn"><a href="#">추천하기</a></div>
+		</div>
+	</div>
+</section>
+
+<% include ../include/footer_intro2 %>
+
+	<div id="popbg" class="popbg"></div>
+	<div id="popup_success" class="successPop alertPop complete">
+		<div class="title">등록완료<img src="https://img.castvot.com/img/icon_closeW.png" alt="닫기버튼"></div>
+		<div class="popBox">
+			<p class="text">후보자 추천이 완료되었습니다.<br>관리자 승인 후 후보목록에 등록됩니다.<br>감사합니다.</p>
+			<div class="btn_right">
+				<a href="#" class="close_xrp btn_pink" id="btn_close">닫기</a>
+			</div>
+		</div>
+	</div>
+	<div id="popup_error" class="errorPop alertPop complete">
+		<div class="title">에러발생<img src="https://img.castvot.com/img/icon_closeW.png" alt="닫기버튼"></div>
+		<div class="popBox">
+			<p class="text">에러가 발생하였습니다.<br>다시 입력 해주세요.<br>감사합니다.</p>
+			<div class="btn_right">
+				<a href="#" class="close_xrp btn_pink" id="btn_close">닫기</a>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script>
+	$("input:text[numberOnly]").on("keyup", function() {
+		$(this).val($(this).val().replace(/[^0-9]/g,""));
+	});
+
+	// 방송채널 등 URL 형식인지 (http(s)://를 포함하는지 검사)
+	function checkUrlForm(strUrl) {
+		var expUrl = /^http[s]?\:\/\//i;
+		return expUrl.test(strUrl);
+	}
+
+
+	$(document).ready(function(){
+		checkUrlForm();
+		divAddRemove(".addBtn", ".removeBtn", 3);
+
+		// 파일 첨부 시 Text Box에 File Name 출력
+		$(document).off("change", "[name=photo]").on("change", "[name=photo]", function() {
+			var $this = $(this);
+			$this.parent().siblings("div.filebox").find("[name=fileName]").val($this.val());
+		});
+
+
+
+		// photo change 이미지 업로드
+		$(document).off("change", "#photo1, #photo2, #photo3, #photo4").on("change", "#photo1, #photo2, #photo3, #photo4", function (e) {
+			e.preventDefault();
+
+			var file		= this.files[0];
+			var form		= new FormData();
+			var reg			= /(.jpg|.gif|.png)$/;
+			var form_idx	= e.target.id.slice(-1);
+
+			if (!reg.test(file.name.toLowerCase())) {
+				alert('파일형식은 jpg, gif, png 만 지원합니다.' + file);
+				$("#" + e.target.id).val("");
+				return false;
+			}
+
+			if (file.size > 1024 * 1024 * 10) {
+				alert('파일크기는 10MB 이하입니다.');
+				$("#" + e.target.id).val("");
+				return false;
+			}
+
+			form.append('image', file);
+
+			$.ajax({
+				url			: '/ajax/imgupload',
+				method		: 'POST',
+				processData	: false,
+				contentType	: false,
+				data		: form,
+				success		: function (data) {
+					var json = $.parseJSON(JSON.stringify(data));
+					if (json.status === true) {
+						$("#photokey" + form_idx).val(json.imgkey);
+					} else {
+						$("#" + e.target.id).val("");
+						// alert("에러가 발생했습니다.");
+					PopupError(data.messages);
+					}
+				},
+				error		: function (xhr, status, errorThrown) {
+					// alert("통신에러가 발생했습니다.");
+					PopupError("통신에러" + xhr.responseText);
+				}
+			}); // end of ajax
+		}); // end of photo change
+
+		// 중복 클릭 방지
+		$('.pinkBtn a').off("click").on('click', function (e) {
+			e.preventDefault();
+
+			let userValues = {
+				bjName			: $("#bjName"),
+				bjEmailFront	: $("#txtBjId"),
+				bjEmailBack		: $("#selBjEmail option:selected"),
+				bjContents		: $("#txtHashtag"),
+				bjEmail			: $("#txtBjId").val() + $("#selBjEmail option:selected").val(),
+				bjRepChannel	: $("#selCastContent option:selected"),
+				bjIntroduce		: $("#txtBjInfo"),
+				bjPhoto1		: $("#photokey1"),
+				bjPhotoSrc1		: $("#photo_src1"),
+				bjPhoto2		: $("#photokey2"),
+				bjPhotoSrc2		: $("#photo_src2"),
+				bjPhoto3		: $("#photokey3"),
+				bjPhotoSrc3		: $("#photo_src3"),
+				bjPhoto4		: $("#photokey4"),
+				bjPhotoSrc4		: $("#photo_src4"),
+				bjChannel1		: $("#txtUrlChnl1"),
+				bjChannel2		: $("#txtUrlChnl2"),
+				bjChannel3		: $("#txtUrlChnl3"),
+				bjFanclub		: $("#txtUrlFan"),
+				bjHotVideo1		: $("#txtUrlBest01"),
+				bjHotVideo2		: $("#txtUrlBest02"),
+				userName		: $("#userName"),
+				userEmailFront	: $("#txtUserId"),
+				userEmailBack	: $("#selComEmail option:selected"),
+				userEmail		: $("#txtUserId").val() + $("#selComEmail option:selected").val(),
+				userMphoneFront	: $("#selMobile option:selected"),
+				userMphoneMiddle: $("#numMobile01"),
+				userMphoneBack	: $("#numMobile02"),
+				userMphone		: $("#selMobile option:selected").val() + $("#numMobile01").val() + $("#numMobile02").val(),
+				userPhoneFront	: $("#selPhone option:selected"),
+				userPhoneMiddle	: $("#numPhone01"),
+				userPhoneBack	: $("#numPhone02"),
+				userPhone		: $("#selPhone option:selected").val() + $("#numPhone01").val() + $("#numPhone02").val()
+			};
+			
+			if (!checkRequiredFeild(userValues.bjName, 2)) { return false; }
+			if (!checkRequiredFeild(userValues.bjContents, 2)) { return false; }
+			if (!checkRequiredFeild($("#selCastContent"), 1)) { return false; }
+			if (!checkRequiredFeild(userValues.bjIntroduce, 10)) { return false; }
+            if (!checkRequiredFeild(userValues.bjPhoto1, 1)) { return false; }
+			if (!checkRequiredFeild(userValues.bjPhotoSrc1, 1)) { return false; }
+            if (!checkRequiredFeild(userValues.bjPhoto2, 1)) { return false; }
+			if (!checkRequiredFeild(userValues.bjPhotoSrc2, 1)) { return false; }
+            if (!checkRequiredFeild(userValues.bjChannel1, 10)) { return false; }
+			if (!checkRequiredFeild(userValues.bjHotVideo1, 10)) { return false; }
+			if (!checkRequiredFeild(userValues.bjHotVideo2, 10)) { return false; }
+			if (!checkRequiredFeild(userValues.userName, 2)) { return false; }
+			if (!checkRequiredFeild(userValues.userEmailFront, 2)) { return false; }
+			if (!checkRequiredFeild(userValues.userMphoneMiddle, 4)) { return false; }
+			if (!checkRequiredFeild(userValues.userMphoneBack, 4)) { return false; }
+
+			else {
+				$.ajax({
+					type		: "POST",
+					url			: "/ajax/newbj/others",
+					crossDomain	: false,
+					contentType	: "application/json",
+					processData	: false,
+					dataType	: "json",
+					data	: JSON.stringify({
+						bj_name			: userValues.bjName.val(),
+						bj_contents		: userValues.bjContents.val(),
+						bj_active_area	: userValues.bjRepChannel.val(),
+						bjEmail			: userValues.bjEmail,
+						introduce		: userValues.bjIntroduce.val(),
+						photokey1		: userValues.bjPhoto1.val(),
+						photokey2		: userValues.bjPhoto2.val(),
+						photokey3		: userValues.bjPhoto3.val(),
+						photokey4		: userValues.bjPhoto4.val(),
+						photo_src1		: userValues.bjPhotoSrc1.val(),
+						photo_src2		: userValues.bjPhotoSrc2.val(),
+						photo_src3		: userValues.bjPhotoSrc3.val(),
+						photo_src4		: userValues.bjPhotoSrc4.val(),
+						channel1		: userValues.bjChannel1.val(),
+						channel2		: userValues.bjChannel2.val(),
+						channel3		: userValues.bjChannel3.val(),
+						fanclub			: userValues.bjFanclub.val(),
+						video1			: userValues.bjHotVideo1.val(),
+						video2			: userValues.bjHotVideo2.val(),
+						recommender		: userValues.userName.val(),
+						userEmail		: userValues.userEmail,
+						userMPhone		: userValues.userMphone,
+						userPhone		: userValues.userPhone
+					}),
+					success		: function (data) {
+						var result = $.parseJSON(JSON.stringify(data))
+
+						if (result.status === true) {
+							$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+							// $('#element').on('scroll touchmove mousewheel', function (event) {
+							// event.preventDefault();
+							// event.stopPropagation();
+							// return false;
+							// });
+							$('#popup_success').fadeIn();
+						} else {
+							PopupError(result.messages);
+						}
+					},
+					error		: function (xhr, status, errorThrown) {
+						PopupError("통신에러:" + xhr.responseText);
+					}
+				});
+			}
+
+		});
+		// 유효성 검사
+		$(document).off("blur", ".inputBox > input, select, textarea").on("blur", ".inputBox > input, select, textarea", function() {
+			var $this				= $(this);
+			var $this_wrongArea		= $this.parent().parent().find(".wrong");
+			var $this_wrongBorder	= $this.parent().parent();
+
+			$this_wrongBorder.removeClass("wrong");
+			if(!fn_checkValid($this)) {
+				$this_wrongArea.removeClass("hideImport");
+				$this_wrongBorder.addClass("wrong");
+				return false;
+			}
+		});
+	}); // end of $(document).ready(function(){})
+
+	let errorMessage = "필수 입력 항목을 모두 확인 해 주세요.";
+
+	function checkRequiredFeild(id, checkLength) {
+		if(id.val().length < checkLength) {
+			alert(errorMessage);
+			$( id ).focus();
+
+			return false;
+		}
+
+		return true;
+	}
+
+	function PopupError(text) {
+		console.log("PopupError - " + text);
+		$("#popup_error").fadeIn();
+	}
+
+	$(".alertPop #btn_close").click(function () {
+		$('html, body').css({'overflow': 'visible'});
+		$('#element').off('scroll touchmove mousewheel');
+		$(".alertPop").fadeOut();
+		setTimeout("location.href='/logout'; ");
+	});
+
+	// $(".errorPop #btn_close").click(function () {
+	//	 $(".errorPop").fadeOut();
+	// });
+
+
+	// 유효성 검사
+	var fn_checkValid = function fn_checkValid($this) {
+		var $this_wrongArea		= $this.parent().parent().find(".wrong");
+		var $this_wrongBorder	= $this.parent().parent().find(".formBox");
+		$this_wrongArea.addClass("hideImport");
+
+		var jsThisAttrId		= $this.attr("id");
+		var $bjName_id			= $("#bjName");
+		var bjNameValue			= $bjName_id.val();
+		var bjNameValueLength	= bjNameValue.length;
+
+		if(jsThisAttrId == "bjName") {
+			if(2 > bjNameValueLength || bjNameValueLength > 20
+				|| !/^[ㄱ-ㅎ|가-힣|a-z|A-Z|\-\_]+$/.test(bjNameValue)) {
+				return false;
+			} else {
+				$this.parent().parent().removeClass("wrong")
+			}
+		}
+
+		if(jsThisAttrId == "selCastContent") {
+			if(!$("#selCastContent").val()) {
+				return false;
+			} else {
+				$this.parent().parent().removeClass("wrong")
+			}
+		}
+
+
+		if(jsThisAttrId == "txtHashtag") {
+			if(!$("#txtHashtag").val()) {
+				return false;
+			} else {
+				$this.parent().parent().removeClass("wrong")
+			}
+		}
+
+
+		// if(jsThisAttrId == "txtBjId" || jsThisAttrId == "txtBjEmail") {
+		//	 if(!$("#txtBjId").val()
+		//		 || (!$("#selBjEmail").val() && !$("#txtBjEmail").val())) {
+		//		 return false;
+		//	 } else {
+		//		 $this.parent().parent().removeClass("wrong")
+		//	 }
+		// }
+
+		if(jsThisAttrId == "txtUrlChnl01") {
+			if(!$("#txtUrlChnl01").val()) {
+				return false;
+			} else {
+				$this.parent().parent().removeClass("wrong")
+			}
+		}
+
+		if(jsThisAttrId == "txtBjInfo") {
+			if(!$("#txtBjInfo").val()) {
+				$this_wrongBorder.addClass("wrong");
+				$("#txtBjInfo").siblings(".wrong").removeClass("hideImport");
+				return false;
+			} else {
+				$this_wrongBorder.removeClass("wrong").removeClass("hideImport");
+			}
+		}
+
+		if(jsThisAttrId == "txtUrlBest01") {
+			if(!$("#txtUrlBest01").val()) {
+				return false;
+			} else {
+				$this.parent().parent().removeClass("wrong")
+			}
+		}
+
+		if(jsThisAttrId == "txtUrlBest02") {
+			if(!$("#txtUrlBest02").val()) {
+				return false;
+			} else {
+				$this.parent().parent().removeClass("wrong")
+			}
+		}
+
+		var $userName_id		= $("#userName");
+		var userNameValue		= $userName_id.val();
+		var userNameValueLength	= userNameValue.length;
+
+		if(jsThisAttrId == "userName") {
+			if(2 > userNameValueLength || userNameValueLength > 20
+				|| !/^[ㄱ-ㅎ|가-힣|a-z|A-Z|\-\_]+$/.test(userNameValue)) {
+				return false;
+			} else {
+				$this.parent().parent().removeClass("wrong")
+			}
+		}
+
+		if(jsThisAttrId == "txtUserId" || jsThisAttrId == "txtComEmail") {
+			if(!$("#txtUserId").val()
+				|| (!$("#selComEmail").val() && !$("#txtComEmail").val())) {
+				return false;
+			} else {
+				$this.parent().parent().removeClass("wrong")
+			}
+		}
+
+		if(jsThisAttrId == "numMobile01" || jsThisAttrId == "numMobile02") {
+			if(!$("#numMobile01").val() || !$("#numMobile02").val()) {
+				return false;
+			} else {
+				$this.parent().parent().removeClass("wrong")
+			}
+		}
+
+		return true;
+	};
+	// 전송하기
+
+
+	/************************************************************
+	 * DIV Add & Remove
+	 * divAddRemove(addBtn, delBtn, maxRow, isReadOnly)
+	 * - addBtn 	: Row 추가 버튼
+	 * - delBtn 	: Row 제거 버튼
+	 * - maxRow 	: 최대 Row 개수 (0 일 경우 Row 제한 없음)
+	 * - isReadOnly	: false일 때 ReadOnly 초기화
+	 ************************************************************/
+	function divAddRemove(addBtn, delBtn, maxRow, isReadOnly) {
+		// DIV 추가 제어 , 등록 되어 있는 언어 갯수 만큼의 추가 생성
+		var maxLength = maxRow;
+
+		// DIV 추가 생성
+		$(document).on('click', addBtn, function() {
+			var $currentRow					= $(this).parents("div.formBox");
+			var $currentRow_parent			= $currentRow.parent();
+			var $currentRow_parent_findDiv	= $currentRow_parent.find("div.formBox");
+			var $cloneRow					= $currentRow_parent.find("div.formBox:first").clone();
+			var $cloneRow_findLabel			= $cloneRow.find("label");
+			var $cloneRow_findInput			= $cloneRow.find("input");
+			var $cloneRow_findTextarea		= $cloneRow.find("textarea");
+			var $cloneRow_findSelect		= $cloneRow.find("select");
+			var $cloneRow_addBtn			= $cloneRow.find(".addBtn");
+
+			$cloneRow.find(".title span").removeClass("red").text("").addClass("select");
+
+			// readOnly 속성, disabled 속성 해제
+			if(!isReadOnly) {
+				$cloneRow_findInput.val("")
+								   .prop("readOnly", false)
+								   .css("background-color", "");
+				$cloneRow_findTextarea.val("")
+							 		  .prop("readOnly", false)
+									  .css("background-color", "");
+				$cloneRow_findSelect.val("")
+									.prop("disabled", false)
+									.css("background-color", "");
+			} else {
+				$cloneRow_findInput.val("");
+				$cloneRow_findTextarea.val("");
+				$cloneRow_findSelect.val("");
+			}
+
+			$cloneRow_addBtn.removeClass("addBtn")
+							.addClass("removeBtn")
+							.text("-");
+
+			if (0 < maxLength
+					&& $currentRow_parent_findDiv.length >= maxLength) {
+				alert("최대 " + $currentRow_parent_findDiv.length + "개까지만 추가할 수 있습니다.");
+
+				return false;
+			}
+			var ver = getInternetExplorerVersion();
+			if (ver > -1) {
+				$currentRow.after($cloneRow.show());
+			} else {
+				$currentRow.after($cloneRow.fadeIn(200));
+			}
+
+		var $currentRow_parent_divCount		= $currentRow_parent.find("[name=divCount]");
+		var $currentRow_parent_fileName		= $currentRow_parent.find("[name=fileName]");
+		var $currentRow_parent_labelPhoto	= $currentRow_parent.find("label[for^=photo]");
+		var $currentRow_parent_photo		= $currentRow_parent.find("[name=photo]");
+		var $currentRow_parent_photokey		= $currentRow_parent.find("[name=photokey]");
+		var $currentRow_parent_photo_src	= $currentRow_parent.find("[name=photo_src]");
+		var $currentRow_parent_txtUrlChnl	= $currentRow_parent.find("[name=txtUrlChnl]");
+		var divCount_length					= $currentRow_parent_divCount.length;
+			for(var i = 0; i < divCount_length; i++) {
+				$currentRow_parent_divCount.eq(i).text(i + 1);
+				$currentRow_parent_fileName.eq(i).attr("id",	$currentRow_parent_fileName.attr("name") + (i + 2));
+				$currentRow_parent_labelPhoto.eq(i).attr("for",	$currentRow_parent_photo.attr("name") + (i + 2));
+				$currentRow_parent_photo.eq(i).attr("id",		$currentRow_parent_photo.attr("name") + (i + 2));
+				$currentRow_parent_photokey.eq(i).attr("id",	$currentRow_parent_photokey.attr("name") + (i + 2));
+				$currentRow_parent_photo_src.eq(i).attr("id",	$currentRow_parent_photo_src.attr("name") + (i + 2));
+				$currentRow_parent_txtUrlChnl.eq(i).attr("id",	$currentRow_parent_txtUrlChnl.attr("name") + (i + 1));
+			}
+		});
+
+		// DIV 삭제 생성
+		$(document).on('click', delBtn, function() {
+			var $this		= $(this);
+			var $deleteRow	= $this.parents("div.formBox");
+
+			// var jsDeleteRow_class  = $deleteRow.hasClass();
+			if(($deleteRow.parent().find("div.formBox").length) <= 1) {
+				alert("더 이상 제거할 수 없습니다.");
+
+				return false;
+			}
+
+			$deleteRow.fadeOut(200, function() {
+				$deleteRow.remove();
+
+				var $deleteRow_divCount	 = $deleteRow.parent().find("[name=divCount]");
+				var $deleteRow_fileName	 = $deleteRow.find("[name=fileName]");
+				var $deleteRow_labelPhoto	= $deleteRow.find("label[for^=photo]");
+				var $deleteRow_photo		= $deleteRow.find("[name=photo]");
+				var $deleteRow_photokey	 = $deleteRow.find("[name=photokey]");
+				var $deleteRow_photo_src	= $deleteRow.find("[name=photo_src]");
+				var $deleteRow_txtUrlChnl	= $deleteRow.find("[name=txtUrlChnl]");
+				var divCount_length		 = $deleteRow_divCount.length;
+				for(var i = 0; i < divCount_length; i++) {
+					$deleteRow_divCount.eq(i).text(i + 1);
+					$deleteRow_fileName.eq(i).attr("id",	$deleteRow_fileName.attr("name") + (i + 2));
+					$deleteRow_labelPhoto.eq(i).attr("for", $deleteRow_photo.attr("name") + (i + 2));
+					$deleteRow_photo.eq(i).attr("id",		$deleteRow_photo.attr("name") + (i + 2));
+					$deleteRow_photokey.eq(i).attr("id",	$deleteRow_photokey.attr("name") + (i + 2));
+					$deleteRow_photo_src.eq(i).attr("id",	$deleteRow_photo_src.attr("name") + (i + 2));
+					$deleteRow_txtUrlChnl.eq(i).attr("id",  $deleteRow_txtUrlChnl.attr("name") + (i + 1));
+				}
+			});
+		});
+	}
+
+
+	/* Check IE Version s */
+	function getInternetExplorerVersion() {
+		// Returns the version of Windows Internet Explorer or a -1
+		// (indicating the use of another browser).
+		var rv = -1;			// Return value assumes failure.
+		if (navigator.appName == 'Microsoft Internet Explorer') {
+			var ua = navigator.userAgent;
+			var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+			if (re.exec(ua) != null)
+				rv = parseFloat( RegExp.$1 );
+		}
+		return rv;
+	}
+
+</script>
+</html>
